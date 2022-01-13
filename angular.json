@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "projects": {
+    "travelmaker-app": {
+      "projectType": "application",
+      "root": "apps/travelmaker-app",
+      "sourceRoot": "apps/travelmaker-app/src",
+      "prefix": "travelmaker",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/travelmaker-app",
+            "index": "apps/travelmaker-app/src/index.html",
+            "main": "apps/travelmaker-app/src/main.ts",
+            "polyfills": "apps/travelmaker-app/src/polyfills.ts",
+            "tsConfig": "apps/travelmaker-app/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/travelmaker-app/src/favicon.ico",
+              "apps/travelmaker-app/src/assets"
+            ],
+            "styles": ["apps/travelmaker-app/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/travelmaker-app/src/environments/environment.ts",
+                  "with": "apps/travelmaker-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "travelmaker-app:build:production"
+            },
+            "development": {
+              "browserTarget": "travelmaker-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "travelmaker-app:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/travelmaker-app/src/**/*.ts",
+              "apps/travelmaker-app/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/travelmaker-app"],
+          "options": {
+            "jestConfig": "apps/travelmaker-app/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "travelmaker-app-e2e": {
+      "root": "apps/travelmaker-app-e2e",
+      "sourceRoot": "apps/travelmaker-app-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/travelmaker-app-e2e/cypress.json",
+            "devServerTarget": "travelmaker-app:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "travelmaker-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/travelmaker-app-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["travelmaker-app"]
+    }
+  }
+}
