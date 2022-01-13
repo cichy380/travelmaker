@@ -9,7 +9,8 @@
     "build": "nx build",
     "build:prod": "nx build --configuration production --base-href /travelmaker/",
     "test": "nx test",
-    "test:headless": "nx test --watch=false --browsers=ChromeHeadless"
+    "test:ci": "nx test --watch=false --browsers=ChromeHeadless",
+    "lint": "nx lint"
   },
   "private": true,
   "dependencies": {
