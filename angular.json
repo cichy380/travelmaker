@@ -24,7 +24,6 @@
               "apps/travelmaker-app/src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "apps/travelmaker-app/src/styles.scss"
             ],
             "scripts": []

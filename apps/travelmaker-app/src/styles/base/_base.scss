@@ -1,0 +1,12 @@
+// Basic styles
+//
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0; // Remove the margin in all browsers.
+  font-family: $font-family;
+}

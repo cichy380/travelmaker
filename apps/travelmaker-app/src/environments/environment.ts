@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  API_URL: 'https://travelmaker-api.herokuapp.com/api',
 };
 
 /*

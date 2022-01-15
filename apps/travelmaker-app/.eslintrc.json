@@ -24,6 +24,13 @@
             "prefix": "travelmaker",
             "style": "kebab-case"
           }
+        ],
+        "@typescript-eslint/quotes": [
+          "warn",
+          "single",
+          {
+            "allowTemplateLiterals": true
+          }
         ]
       }
     },
