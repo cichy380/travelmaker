@@ -6,13 +6,8 @@ import { DestinationsModule } from './destinations/destinations.module';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'destinations',
-    pathMatch: 'full',
-  },
-  {
-    path: 'destinations',
     loadChildren: () => DestinationsModule,
-  }
+  },
 ];
 
 @NgModule({
