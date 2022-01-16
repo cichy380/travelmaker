@@ -12,7 +12,7 @@ import { DestinationsFacade } from '../../+state/destinations.facade';
 export class DaysOfTheWeekSheetComponent {
   public days: DayOfTheWeek[];
 
-  constructor(private _bottomSheetRef: MatBottomSheetRef<DaysOfTheWeekSheetComponent>, private facade: DestinationsFacade) {
+  constructor(private _bottomSheetRef: MatBottomSheetRef<DaysOfTheWeekSheetComponent>, public facade: DestinationsFacade) {
     const weekdays = Object.values(DayOfTheWeek);
     const indexFirstDayOfTheWeek = getWeekStartByLocale(navigator.language);
     this.days = weekdays.concat(weekdays).slice(indexFirstDayOfTheWeek, indexFirstDayOfTheWeek + 7);

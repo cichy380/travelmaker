@@ -1,5 +1,9 @@
-<mat-nav-list>
-  <a mat-list-item (click)="onDayClick($event, day)" *ngFor="let day of days">
+<mat-nav-list *ngIf="facade.selectedWeekday$ | async as selectedWeekday">
+  <a
+    mat-list-item
+    *ngFor="let day of days"
+    (click)="onDayClick($event, day)"
+    [class.selected]="selectedWeekday === day">
     <span mat-line>{{ day | translateWeekday }}</span>
   </a>
 </mat-nav-list>

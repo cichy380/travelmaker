@@ -3,6 +3,7 @@
 
 
 @use "@angular/material" as mat;
+@use "../../app/destinations/components/days-of-the-week-sheet/days-of-the-week-sheet-theme" as days-of-the-week-sheet;
 
 @include mat.core();
 
@@ -26,3 +27,4 @@ $my-theme: mat.define-light-theme((
 @include mat.button-theme($my-theme);
 @include mat.toolbar-theme($my-theme);
 @include mat.bottom-sheet-theme($my-theme);
+@include days-of-the-week-sheet.color($my-theme);
