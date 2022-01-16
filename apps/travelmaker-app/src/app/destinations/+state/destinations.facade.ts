@@ -3,6 +3,7 @@ import { select, Store } from '@ngrx/store';
 
 import * as DestinationsActions from './destinations.actions';
 import * as DestinationsSelectors from './destinations.selectors';
+import { DayOfTheWeek } from './destinations.models';
 
 @Injectable()
 export class DestinationsFacade {
@@ -19,14 +20,23 @@ export class DestinationsFacade {
   selectedDestinations$ = this.store.pipe(
     select(DestinationsSelectors.getSelected)
   );
+  selectedWeekday$ = this.store.pipe(
+    select(DestinationsSelectors.getSelectedWeekday)
+  );
 
   constructor(private readonly store: Store) {}
 
-  /**
-   * Use the initialization action to perform one
-   * or more tasks in your Effects.
-   */
-  init() {
+  public loadDestinations(): void {
     this.store.dispatch(DestinationsActions.loadDestinations());
+  }
+
+  public getDestinationsByDay(selectedDay: DayOfTheWeek) {
+    return this.store.pipe(
+      select(DestinationsSelectors.getDestinationsByDay(selectedDay))
+    )
+  }
+
+  public setSelectedWeekday(selectedWeekday: DayOfTheWeek): void {
+    this.store.dispatch(DestinationsActions.setSelectedWeekday({selectedWeekday}));
   }
 }

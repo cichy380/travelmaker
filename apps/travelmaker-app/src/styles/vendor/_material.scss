@@ -25,3 +25,4 @@ $my-theme: mat.define-light-theme((
 
 @include mat.button-theme($my-theme);
 @include mat.toolbar-theme($my-theme);
+@include mat.bottom-sheet-theme($my-theme);

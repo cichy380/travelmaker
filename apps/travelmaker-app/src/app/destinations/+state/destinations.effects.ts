@@ -5,7 +5,7 @@ import * as DestinationsActions from './destinations.actions';
 import { DestinationsApiService } from '../services/destinations-api.service';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ApiErrorResponse } from '../../shared/services/ApiResponse.model';
+import { ApiErrorResponse } from '../../shared/models/ApiResponse.model';
 
 @Injectable()
 export class DestinationsEffects {

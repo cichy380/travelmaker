@@ -1,5 +1,11 @@
-<mat-list>
-  <mat-list-item *ngFor="let destination of facade.allDestinations$ | async">
+<header style="display: flex; justify-content: center">
+  <button mat-button (click)="onDayOfTheWeekClick()">
+    <h2>{{ facade.selectedWeekday$ | async | translateWeekday }}</h2>
+  </button>
+</header>
+
+<mat-list *ngIf="facade.loaded$ | async">
+  <mat-list-item *ngFor="let destination of destinations$ | async">
     <mat-icon mat-list-icon class="material-icons-outlined">place</mat-icon>
     <div mat-line><strong>{{ destination.name }}</strong></div>
     <div mat-line>{{ destination.city }} {{ destination.address }}</div>

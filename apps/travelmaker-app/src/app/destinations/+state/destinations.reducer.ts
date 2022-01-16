@@ -1,9 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on, Action } from '@ngrx/store';
-import { ApiErrorResponse } from '../../shared/services/ApiResponse.model';
+import { ApiErrorResponse } from '../../shared/models/ApiResponse.model';
 import * as DestinationsActions from './destinations.actions';
-import { DestinationsEntity } from './destinations.models';
+import { DayOfTheWeek, DestinationsEntity } from './destinations.models';
 
 export const DESTINATIONS_FEATURE_KEY = 'destinations';
 
@@ -11,6 +11,7 @@ export interface State extends EntityState<DestinationsEntity> {
   selectedId?: string | number; // which Destinations record has been selected
   loaded: boolean; // has the Destinations list been loaded
   error?: HttpErrorResponse | ApiErrorResponse | null;
+  selectedWeekday: DayOfTheWeek;
 }
 
 export interface DestinationsPartialState {
@@ -22,6 +23,7 @@ export const destinationsAdapter: EntityAdapter<DestinationsEntity> =
 
 export const initialState: State = destinationsAdapter.getInitialState({
   loaded: false,
+  selectedWeekday: getCurrentWeekday(),
 });
 
 const destinationsReducer = createReducer(
@@ -32,9 +34,17 @@ const destinationsReducer = createReducer(
   on(DestinationsActions.loadDestinationsFailure, (state, { error }) => ({
     ...state,
     error,
-  }))
+  })),
+  on(DestinationsActions.setSelectedWeekday, (state, { selectedWeekday }) => ({
+    ...state,
+    selectedWeekday,
+  })),
 );
 
 export function reducer(state: State | undefined, action: Action) {
   return destinationsReducer(state, action);
+}
+
+function getCurrentWeekday(): DayOfTheWeek {
+  return Object.values(DayOfTheWeek)[(new Date()).getDay()];
 }

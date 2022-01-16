@@ -4,6 +4,7 @@ import {
   State,
   destinationsAdapter,
 } from './destinations.reducer';
+import { DayOfTheWeek, DestinationsEntity } from './destinations.models';
 
 // Lookup the 'Destinations' feature state managed by NgRx
 export const getDestinationsState = createFeatureSelector<State>(
@@ -27,6 +28,11 @@ export const getAllDestinations = createSelector(
   (state: State) => selectAll(state)
 );
 
+export const getDestinationsByDay = (selectedDay: DayOfTheWeek) => createSelector(
+  getAllDestinations,
+  (allDestinations: DestinationsEntity[]) => allDestinations.filter(destination => destination.day === selectedDay)
+);
+
 export const getDestinationsEntities = createSelector(
   getDestinationsState,
   (state: State) => selectEntities(state)
@@ -41,4 +47,9 @@ export const getSelected = createSelector(
   getDestinationsEntities,
   getSelectedId,
   (entities, selectedId) => (selectedId ? entities[selectedId] : undefined)
+);
+
+export const getSelectedWeekday = createSelector(
+  getDestinationsState,
+  (state: State) => state.selectedWeekday,
 );

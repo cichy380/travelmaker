@@ -1,0 +1,5 @@
+<mat-nav-list>
+  <a mat-list-item (click)="onDayClick($event, day)" *ngFor="let day of days">
+    <span mat-line>{{ day | translateWeekday }}</span>
+  </a>
+</mat-nav-list>
