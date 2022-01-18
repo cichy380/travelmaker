@@ -1,0 +1,6 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+.destinations__list-option-icon {
+  background-color: mat.get-color-from-palette(mat.$gray-palette, 200);
+}

@@ -3,28 +3,30 @@
 
 
 @use "@angular/material" as mat;
+@use "../../app/destinations/destinations-theme.component" as destinations-component;
 @use "../../app/destinations/components/days-of-the-week-sheet/days-of-the-week-sheet-theme" as days-of-the-week-sheet;
 
 @include mat.core();
 
-$my-primary: mat.define-palette(mat.$indigo-palette, 500);
-$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-$my-app-warn: mat.define-palette(mat.$red-palette);
+$travel-primary: mat.define-palette(mat.$blue-palette, 500);
+$travel-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$travel-warn: mat.define-palette(mat.$red-palette);
 
-$my-theme: mat.define-light-theme((
+$travel-theme: mat.define-light-theme((
   color: (
-    primary: $my-primary,
-    accent: $my-accent,
-    warn: $my-app-warn,
+    primary: $travel-primary,
+    accent: $travel-accent,
+    warn: $travel-warn,
   ),
 ));
 
 // Emit theme-dependent styles for common features used across multiple components.
-@include mat.core-theme($my-theme);
+@include mat.core-theme($travel-theme);
 
 //@include mat.all-component-themes($my-theme);
 
-@include mat.button-theme($my-theme);
-@include mat.toolbar-theme($my-theme);
-@include mat.bottom-sheet-theme($my-theme);
-@include days-of-the-week-sheet.color($my-theme);
+@include mat.button-theme($travel-theme);
+@include mat.toolbar-theme($travel-theme);
+@include mat.bottom-sheet-theme($travel-theme);
+@include destinations-component.color($travel-theme);
+@include days-of-the-week-sheet.color($travel-theme);
