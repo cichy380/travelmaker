@@ -31,10 +31,13 @@ const destinationsReducer = createReducer(
   on(DestinationsActions.loadDestinationsSuccess, (state, { destinations }) =>
     destinationsAdapter.setAll(destinations, { ...state, loaded: true })
   ),
-  on(DestinationsActions.loadDestinationsFailure, (state, { error }) => ({
-    ...state,
-    error,
-  })),
+  on(DestinationsActions.loadDestinationsFailure, (state, { error }) => ({ ...state, error })),
+
+  on(DestinationsActions.addDestinationSuccess, (state, { destination }) =>
+    destinationsAdapter.setOne(destination, { ...state, loaded: true })
+  ),
+  on(DestinationsActions.addDestinationFailure, (state, { error }) => ({ ...state, error })),
+
   on(DestinationsActions.setSelectedWeekday, (state, { selectedWeekday }) => ({
     ...state,
     selectedWeekday,

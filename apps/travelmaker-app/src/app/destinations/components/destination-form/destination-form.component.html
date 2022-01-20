@@ -1,0 +1,47 @@
+<div fxLayout="column" fxFlexFill>
+  <header class="destination-form__header" fxLayoutAlign="space-between">
+    <button mat-icon-button mat-dialog-close aria-label="Cancel form">
+      <mat-icon class="material-icons-outlined">arrow_back</mat-icon>
+    </button>
+
+    <button mat-icon-button color="warn" aria-label="Delete item" *ngIf="false">
+      <mat-icon class="material-icons-outlined">delete</mat-icon>
+    </button>
+  </header>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="column" fxFlex="grow">
+    <div class="destination-form__day-btn-wrap">
+      <button mat-button type="button" (click)="onDayClick()" color="primary">
+        {{ facade.selectedWeekday$ | async | translateWeekday }}
+        <mat-icon class="material-icons-outlined">arrow_drop_down</mat-icon>
+      </button>
+    </div>
+
+    <div fxFlex="grow">
+      <mat-form-field appearance="outline" class="destination-form__form-field">
+        <mat-label>name</mat-label>
+        <input matInput [formControlName]="'name'">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="destination-form__form-field">
+        <mat-label>city</mat-label>
+        <input type="text" matInput [formControlName]="'city'">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="destination-form__form-field">
+        <mat-label>address</mat-label>
+        <input matInput [formControlName]="'address'">
+      </mat-form-field>
+    </div>
+
+    <footer fxLayoutAlign="space-between">
+      <button mat-flat-button type="button" mat-dialog-close  fxFlex="grow">
+        Cancel
+      </button>
+
+      <button mat-flat-button type="submit" color="primary"  fxFlex="grow">
+        Save
+      </button>
+    </footer>
+  </form>
+</div>

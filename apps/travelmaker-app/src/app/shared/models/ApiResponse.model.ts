@@ -1,5 +1,5 @@
 export type ApiSuccessResponse<T> = {
-  data: T[]
+  data: T
 }
 
 export type ApiErrorResponse = {
