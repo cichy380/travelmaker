@@ -10,7 +10,7 @@ import * as fromDestinations from './+state/destinations.reducer';
 import { DestinationsEffects } from './+state/destinations.effects';
 import { DestinationsFacade } from './+state/destinations.facade';
 import { DestinationsComponent } from './destinations.component';
-import { DestinationFormComponent } from './components/destination-form/destination-form.component';
+import { DestinationAddFormComponent, DestinationEditFormComponent } from './components/destination-form/destination-form.component';
 import { DaysOfTheWeekSheetComponent } from './components/days-of-the-week-sheet/days-of-the-week-sheet.component';
 import { TranslateWeekdayPipe } from '../shared/pipes/translate-weekday.pipe';
 
@@ -18,7 +18,8 @@ import { TranslateWeekdayPipe } from '../shared/pipes/translate-weekday.pipe';
 @NgModule({
   declarations: [
     DestinationsComponent,
-    DestinationFormComponent,
+    DestinationAddFormComponent,
+    DestinationEditFormComponent,
     DaysOfTheWeekSheetComponent,
     TranslateWeekdayPipe,
   ],

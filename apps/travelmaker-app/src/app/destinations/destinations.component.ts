@@ -2,10 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subscription } from 'rxjs';
-import { DayOfTheWeek, DestinationsEntity } from './+state/destinations.models';
+import { DestinationsEntity } from './+state/destinations.models';
 import { DestinationsFacade } from './+state/destinations.facade';
 import { DaysOfTheWeekSheetComponent } from './components/days-of-the-week-sheet/days-of-the-week-sheet.component';
-import { DestinationFormComponent } from './components/destination-form/destination-form.component';
+import {
+  DestinationAddFormComponent,
+  DestinationEditFormComponent,
+} from './components/destination-form/destination-form.component';
 
 
 @Component({
@@ -31,14 +34,21 @@ export class DestinationsComponent implements OnInit, OnDestroy {
     );
   }
 
-  onDayOfTheWeekClick(): void {
+  public onDayOfTheWeekClick(): void {
     this.bottomSheet.open(DaysOfTheWeekSheetComponent, { restoreFocus: false });
   }
 
-  onNewDestinationClick(day: DayOfTheWeek): void {
-    this.dialog.open(DestinationFormComponent, {
+  public onAddDestinationClick(): void {
+    this.dialog.open(DestinationAddFormComponent, {
       panelClass: ['fullscreen-dialog'],
-      data: { addingForm: true, day },
+      autoFocus: false,
+    });
+  }
+
+  public onEditDestinationClick(destination: DestinationsEntity): void {
+    this.dialog.open(DestinationEditFormComponent, {
+      panelClass: ['fullscreen-dialog'],
+      data: { destination },
       autoFocus: false,
     });
   }

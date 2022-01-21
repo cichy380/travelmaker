@@ -4,7 +4,7 @@
   </mat-toolbar>
 
   <mat-selection-list *ngIf="facade.loaded$ | async" [multiple]="false">
-    <mat-list-option *ngFor="let destination of destinations$ | async">
+    <mat-list-option *ngFor="let destination of destinations$ | async" (click)="onEditDestinationClick(destination)">
       <mat-icon mat-list-icon class="material-icons-outlined destinations__list-option-icon">
         place
       </mat-icon>
@@ -12,7 +12,7 @@
       <div mat-line>{{ destination.city }} {{ destination.address }}</div>
     </mat-list-option>
 
-    <mat-list-option (click)="onNewDestinationClick(weekday)" class="destinations__list-option-add">
+    <mat-list-option (click)="onAddDestinationClick()" class="destinations__list-option-add">
       <mat-icon mat-list-icon class="material-icons-outlined destinations__list-option-add-icon">
         add_location_alt
       </mat-icon>

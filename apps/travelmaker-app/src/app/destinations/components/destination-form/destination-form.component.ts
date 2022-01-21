@@ -12,40 +12,63 @@ import { Subscription } from 'rxjs';
   templateUrl: './destination-form.component.html',
   styleUrls: ['./destination-form.component.scss'],
 })
-export class DestinationFormComponent implements OnDestroy {
+export class DestinationAddFormComponent implements OnDestroy {
   public form: FormGroup;
   private subscription = new Subscription();
 
   constructor(
-    private formBuilder: FormBuilder,
     public facade: DestinationsFacade,
     private bottomSheet: MatBottomSheet,
-    private dialogRef: MatDialogRef<DestinationFormComponent>,
-    @Inject(MAT_DIALOG_DATA) private readonly data: {
-      addingForm?: boolean,
-      day: DayOfTheWeek,
-    },
+    private dialogRef: MatDialogRef<DestinationAddFormComponent>,
+    private formBuilder: FormBuilder,
   ) {
-    const formControlsConfig: Partial<DestinationsEntity> = {
+    this.form = formBuilder.group({
       name: '',
       city: '',
       address: '',
-      day: data.day,
-    }
-
-    this.form = formBuilder.group(formControlsConfig);
+    });
   }
 
-  public onSubmit() {
-    if (this.form.valid) {
-      this.subscription.add(
-        this.facade.addDestination(this.form.value)
-          .subscribe(success => success && this.dialogRef.close())
-      );
-    }
+  public onSubmit(day: DayOfTheWeek) {
+    this.subscription.add(
+      this.facade.addDestination({ ...this.form.value, day })
+        .subscribe(success => success && this.dialogRef.close())
+    );
   }
 
-  onDayClick(): void {
+  onChangeDayClick(): void {
+    this.bottomSheet.open(DaysOfTheWeekSheetComponent, { restoreFocus: false });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+}
+
+@Component({
+  selector: 'travelmaker-destination-form',
+  templateUrl: './destination-form.component.html',
+  styleUrls: ['./destination-form.component.scss'],
+})
+export class DestinationEditFormComponent implements OnDestroy {
+  public form: FormGroup;
+  private subscription = new Subscription();
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) private readonly data: { destination: DestinationsEntity },
+    public facade: DestinationsFacade,
+    private bottomSheet: MatBottomSheet,
+    private dialogRef: MatDialogRef<DestinationAddFormComponent>,
+    private formBuilder: FormBuilder,
+  ) {
+    this.form = formBuilder.group(data.destination);
+  }
+
+  public onSubmit(day: DayOfTheWeek) {
+    console.log({ ...this.form.value, day });
+  }
+
+  onChangeDayClick(): void {
     this.bottomSheet.open(DaysOfTheWeekSheetComponent, { restoreFocus: false });
   }
 
