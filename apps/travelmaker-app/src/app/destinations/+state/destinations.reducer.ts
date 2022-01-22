@@ -43,6 +43,11 @@ const destinationsReducer = createReducer(
   ),
   on(DestinationsActions.editDestinationFailure, (state, { error }) => ({ ...state, error })),
 
+  on(DestinationsActions.deleteDestinationSuccess, (state, { destinationId }) =>
+    destinationsAdapter.removeOne(destinationId, { ...state })
+  ),
+  on(DestinationsActions.deleteDestinationFailure, (state, { error }) => ({ ...state, error })),
+
   on(DestinationsActions.setSelectedWeekday, (state, { selectedWeekday }) => ({
     ...state,
     selectedWeekday,

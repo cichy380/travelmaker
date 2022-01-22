@@ -41,14 +41,14 @@ export class DestinationsComponent implements OnInit {
 
   public onAddDestinationClick(): void {
     this.dialog.open(DestinationAddFormComponent, {
-      panelClass: ['fullscreen-dialog'],
+      panelClass: ['dialog-fullscreen'],
       autoFocus: false,
     });
   }
 
   public onEditDestinationClick(destination: DestinationsEntity): void {
     this.dialog.open(DestinationEditFormComponent, {
-      panelClass: ['fullscreen-dialog'],
+      panelClass: ['dialog-fullscreen'],
       data: { destination },
       autoFocus: false,
     });

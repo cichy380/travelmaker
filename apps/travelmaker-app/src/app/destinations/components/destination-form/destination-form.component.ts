@@ -1,10 +1,14 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DayOfTheWeek, DestinationsEntity } from '../../+state/destinations.models';
 import { DestinationsFacade } from '../../+state/destinations.facade';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { DaysOfTheWeekSheetComponent } from '../days-of-the-week-sheet/days-of-the-week-sheet.component';
+import {
+  ConfirmDialogComponent,
+  ConfirmDialogDataModel,
+} from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 
 
 @Component({
@@ -33,8 +37,12 @@ export class DestinationAddFormComponent {
       .subscribe(success => success && this.dialogRef.close());
   }
 
-  onChangeDayClick(): void {
+  public onChangeDayClick(): void {
     this.bottomSheet.open(DaysOfTheWeekSheetComponent, { restoreFocus: false });
+  }
+
+  public onDeleteClick() {
+    return
   }
 }
 
@@ -50,6 +58,7 @@ export class DestinationEditFormComponent {
     @Inject(MAT_DIALOG_DATA) private readonly data: { destination: DestinationsEntity },
     public facade: DestinationsFacade,
     private bottomSheet: MatBottomSheet,
+    private dialog: MatDialog,
     private dialogRef: MatDialogRef<DestinationAddFormComponent>,
     private formBuilder: FormBuilder,
   ) {
@@ -61,7 +70,22 @@ export class DestinationEditFormComponent {
       .subscribe(success => success && this.dialogRef.close());
   }
 
-  onChangeDayClick(): void {
+  public onChangeDayClick(): void {
     this.bottomSheet.open(DaysOfTheWeekSheetComponent, { restoreFocus: false });
+  }
+
+  public onDeleteClick() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '280px',
+      data: ({
+        message: 'You are sure you want to delete this item?',
+      } as ConfirmDialogDataModel),
+      autoFocus: false,
+    });
+
+    dialogRef.afterClosed()
+      .subscribe(result => result && this.facade.deleteDestination(this.data.destination.id)
+        .subscribe(success => success && this.dialogRef.close())
+      );
   }
 }

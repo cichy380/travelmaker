@@ -4,7 +4,7 @@ import { Actions, ofType } from '@ngrx/effects';
 
 import * as DestinationsActions from './destinations.actions';
 import * as DestinationsSelectors from './destinations.selectors';
-import { DayOfTheWeek, DestinationsEntity } from './destinations.models';
+import { DayOfTheWeek, DestinationId, DestinationsEntity } from './destinations.models';
 import { map, Observable, take } from 'rxjs';
 
 @Injectable()
@@ -50,6 +50,15 @@ export class DestinationsFacade {
       ofType(DestinationsActions.editDestinationSuccess, DestinationsActions.editDestinationFailure),
       take(1),
       map((action) => action.type === DestinationsActions.editDestinationSuccess.type)
+    );
+  }
+
+  public deleteDestination(destinationId: DestinationId): Observable<boolean> {
+    this.store.dispatch(DestinationsActions.deleteDestination({ destinationId }));
+    return this.actions$.pipe(
+      ofType(DestinationsActions.deleteDestinationSuccess, DestinationsActions.deleteDestinationFailure),
+      take(1),
+      map((action) => action.type === DestinationsActions.deleteDestinationSuccess.type)
     );
   }
 

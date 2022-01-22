@@ -10,6 +10,7 @@ import { ApiErrorResponse } from '../../shared/models/ApiResponse.model';
 
 @Injectable()
 export class DestinationsEffects {
+
   read$ = createEffect(() =>
     this.actions$.pipe(
       ofType(DestinationsActions.loadDestinations),
@@ -36,6 +37,16 @@ export class DestinationsEffects {
       mergeMap(({ updateDestination }) => this.api.edit(updateDestination).pipe(
         map((response) => DestinationsActions.editDestinationSuccess({ updateDestination: { id: response.data.id, changes: response.data } })),
         catchError((error: HttpErrorResponse | ApiErrorResponse) => of(DestinationsActions.editDestinationFailure({ error }))),
+      ))
+    )
+  );
+
+  del$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(DestinationsActions.deleteDestination),
+      mergeMap(({ destinationId }) => this.api.delete(destinationId).pipe(
+        map((response) => DestinationsActions.deleteDestinationSuccess({ destinationId: response.data.id })),
+        catchError((error: HttpErrorResponse | ApiErrorResponse) => of(DestinationsActions.deleteDestinationFailure({ error }))),
       ))
     )
   );
