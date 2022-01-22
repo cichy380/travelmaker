@@ -3,23 +3,29 @@
     <h2>{{ day | translateWeekday }}</h2>
   </mat-toolbar>
 
-  <mat-selection-list *ngIf="loaded$ | async" [multiple]="false" [compareWith]="compareWith">
-    <mat-list-option
-      *ngFor="let destination of destinations$ | async | destinationsByDay:day"
-      (click)="onEditDestinationClick(destination)">
-      <mat-icon mat-list-icon class="material-icons-outlined destinations__list-option-icon">
-        place
-      </mat-icon>
-      <div mat-line class="font-weight-medium">{{ destination.name }}</div>
-      <div mat-line>{{ destination.city }} {{ destination.address }}</div>
-    </mat-list-option>
+  <mat-drawer-container fxFlex="grow">
+    <mat-drawer-content>
+      <mat-selection-list *ngIf="loaded$ | async" [multiple]="false" [compareWith]="compareWith">
+        <mat-list-option
+          *ngFor="let destination of destinations$ | async | destinationsByDay:day"
+          (click)="onEditDestinationClick(destination)">
+          <mat-icon mat-list-icon class="material-icons-outlined destinations__list-option-icon">
+            place
+          </mat-icon>
+          <div mat-line class="font-weight-medium">{{ destination.name }}</div>
+          <div mat-line>{{ destination.city }} {{ destination.address }}</div>
+        </mat-list-option>
+      </mat-selection-list>
 
-    <mat-list-option (click)="onAddDestinationClick()" class="destinations__list-option-add">
-      <mat-icon mat-list-icon class="material-icons-outlined destinations__list-option-add-icon">
-        add_location_alt
-      </mat-icon>
-      <div mat-line class="font-weight-medium">Add new destination</div>
-      <div mat-line>on {{ day }}</div>
-    </mat-list-option>
-  </mat-selection-list>
+      <button
+        mat-fab
+        (click)="onAddDestinationClick()"
+        color="primary"
+        class="destinations__fab"
+        aria-label="Add new destination">
+        <mat-icon class="material-icons-outlined">add_location_alt</mat-icon>
+      </button>
+    </mat-drawer-content>
+  </mat-drawer-container>
+  <footer><!-- link to map here --></footer>
 </ng-container>
