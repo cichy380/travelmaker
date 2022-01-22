@@ -38,7 +38,7 @@ export const addDestinationFailure = createAction(
 
 export const editDestination = createAction(
   '[Destinations/API] Edit Destination',
-  props<{ updateDestination: Update<DestinationsEntity> }>(),
+  props<{ destination: DestinationsEntity }>(),
 );
 
 export const editDestinationSuccess = createAction(

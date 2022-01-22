@@ -34,7 +34,7 @@ export class DestinationsEffects {
   edit$ = createEffect(() =>
     this.actions$.pipe(
       ofType(DestinationsActions.editDestination),
-      mergeMap(({ updateDestination }) => this.api.edit(updateDestination).pipe(
+      mergeMap(({ destination }) => this.api.edit(destination).pipe(
         map((response) => DestinationsActions.editDestinationSuccess({ updateDestination: { id: response.data.id, changes: response.data } })),
         catchError((error: HttpErrorResponse | ApiErrorResponse) => of(DestinationsActions.editDestinationFailure({ error }))),
       ))

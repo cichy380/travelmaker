@@ -45,7 +45,7 @@ export class DestinationsFacade {
   }
 
   public editDestination(destination: DestinationsEntity): Observable<boolean> {
-    this.store.dispatch(DestinationsActions.editDestination({ updateDestination: { id: destination.id, changes: destination } }));
+    this.store.dispatch(DestinationsActions.editDestination({ destination }));
     return this.actions$.pipe(
       ofType(DestinationsActions.editDestinationSuccess, DestinationsActions.editDestinationFailure),
       take(1),
