@@ -30,6 +30,16 @@ export class DestinationsEffects {
     )
   );
 
+  edit$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(DestinationsActions.editDestination),
+      mergeMap(({ updateDestination }) => this.api.edit(updateDestination).pipe(
+        map((response) => DestinationsActions.editDestinationSuccess({ updateDestination: { id: response.data.id, changes: response.data } })),
+        catchError((error: HttpErrorResponse | ApiErrorResponse) => of(DestinationsActions.editDestinationFailure({ error }))),
+      ))
+    )
+  );
+
   constructor(private readonly actions$: Actions, private api: DestinationsApiService) {
   }
 }

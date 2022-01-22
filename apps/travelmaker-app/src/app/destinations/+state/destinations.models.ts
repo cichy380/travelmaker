@@ -1,8 +1,10 @@
 /**
  * Interface for the 'Destinations' data
  */
+export type DestinationId = string;
+
 export interface DestinationsEntity {
-  id: string; // Primary ID
+  id: DestinationId; // Primary ID
   name: string;
   city: string;
   address: string;

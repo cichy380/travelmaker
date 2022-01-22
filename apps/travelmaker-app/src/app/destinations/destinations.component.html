@@ -1,10 +1,12 @@
-<ng-container *ngIf="facade.selectedWeekday$ | async as weekday">
+<ng-container *ngIf="selectedDay$ | async as day">
   <mat-toolbar (click)="onDayOfTheWeekClick()" mat-ripple fxLayoutAlign="center center">
-    <h2>{{ weekday | translateWeekday }}</h2>
+    <h2>{{ day | translateWeekday }}</h2>
   </mat-toolbar>
 
-  <mat-selection-list *ngIf="facade.loaded$ | async" [multiple]="false">
-    <mat-list-option *ngFor="let destination of destinations$ | async" (click)="onEditDestinationClick(destination)">
+  <mat-selection-list *ngIf="loaded$ | async" [multiple]="false" [compareWith]="compareWith">
+    <mat-list-option
+      *ngFor="let destination of destinations$ | async | destinationsByDay:day"
+      (click)="onEditDestinationClick(destination)">
       <mat-icon mat-list-icon class="material-icons-outlined destinations__list-option-icon">
         place
       </mat-icon>
@@ -17,7 +19,7 @@
         add_location_alt
       </mat-icon>
       <div mat-line class="font-weight-medium">Add new destination</div>
-      <div mat-line>on {{ weekday }}</div>
+      <div mat-line>on {{ day }}</div>
     </mat-list-option>
   </mat-selection-list>
 </ng-container>

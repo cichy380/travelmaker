@@ -3,12 +3,12 @@ import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on, Action } from '@ngrx/store';
 import { ApiErrorResponse } from '../../shared/models/ApiResponse.model';
 import * as DestinationsActions from './destinations.actions';
-import { DayOfTheWeek, DestinationsEntity } from './destinations.models';
+import { DayOfTheWeek, DestinationId, DestinationsEntity } from './destinations.models';
 
 export const DESTINATIONS_FEATURE_KEY = 'destinations';
 
 export interface State extends EntityState<DestinationsEntity> {
-  selectedId?: string | number; // which Destinations record has been selected
+  selectedId?: DestinationId; // which Destinations record has been selected
   loaded: boolean; // has the Destinations list been loaded
   error?: HttpErrorResponse | ApiErrorResponse | null;
   selectedWeekday: DayOfTheWeek;
@@ -34,9 +34,14 @@ const destinationsReducer = createReducer(
   on(DestinationsActions.loadDestinationsFailure, (state, { error }) => ({ ...state, error })),
 
   on(DestinationsActions.addDestinationSuccess, (state, { destination }) =>
-    destinationsAdapter.setOne(destination, { ...state, loaded: true })
+    destinationsAdapter.setOne(destination, { ...state })
   ),
   on(DestinationsActions.addDestinationFailure, (state, { error }) => ({ ...state, error })),
+
+  on(DestinationsActions.editDestinationSuccess, (state, { updateDestination }) =>
+    destinationsAdapter.updateOne(updateDestination, { ...state })
+  ),
+  on(DestinationsActions.editDestinationFailure, (state, { error }) => ({ ...state, error })),
 
   on(DestinationsActions.setSelectedWeekday, (state, { selectedWeekday }) => ({
     ...state,

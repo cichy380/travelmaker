@@ -1,20 +1,19 @@
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DayOfTheWeek, DestinationsEntity } from '../../+state/destinations.models';
 import { DestinationsFacade } from '../../+state/destinations.facade';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { DaysOfTheWeekSheetComponent } from '../days-of-the-week-sheet/days-of-the-week-sheet.component';
-import { Subscription } from 'rxjs';
+
 
 @Component({
-  selector: 'travelmaker-destination-form',
+  selector: 'travelmaker-destination-add-form',
   templateUrl: './destination-form.component.html',
   styleUrls: ['./destination-form.component.scss'],
 })
-export class DestinationAddFormComponent implements OnDestroy {
+export class DestinationAddFormComponent {
   public form: FormGroup;
-  private subscription = new Subscription();
 
   constructor(
     public facade: DestinationsFacade,
@@ -30,29 +29,22 @@ export class DestinationAddFormComponent implements OnDestroy {
   }
 
   public onSubmit(day: DayOfTheWeek) {
-    this.subscription.add(
-      this.facade.addDestination({ ...this.form.value, day })
-        .subscribe(success => success && this.dialogRef.close())
-    );
+    this.facade.addDestination({ ...this.form.value, day })
+      .subscribe(success => success && this.dialogRef.close());
   }
 
   onChangeDayClick(): void {
     this.bottomSheet.open(DaysOfTheWeekSheetComponent, { restoreFocus: false });
   }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
 }
 
 @Component({
-  selector: 'travelmaker-destination-form',
+  selector: 'travelmaker-destination-edit-form',
   templateUrl: './destination-form.component.html',
   styleUrls: ['./destination-form.component.scss'],
 })
-export class DestinationEditFormComponent implements OnDestroy {
+export class DestinationEditFormComponent {
   public form: FormGroup;
-  private subscription = new Subscription();
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private readonly data: { destination: DestinationsEntity },
@@ -65,14 +57,11 @@ export class DestinationEditFormComponent implements OnDestroy {
   }
 
   public onSubmit(day: DayOfTheWeek) {
-    console.log({ ...this.form.value, day });
+    this.facade.editDestination({ ...this.form.value, day })
+      .subscribe(success => success && this.dialogRef.close());
   }
 
   onChangeDayClick(): void {
     this.bottomSheet.open(DaysOfTheWeekSheetComponent, { restoreFocus: false });
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 }

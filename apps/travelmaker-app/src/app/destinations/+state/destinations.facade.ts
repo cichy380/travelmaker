@@ -44,9 +44,12 @@ export class DestinationsFacade {
     );
   }
 
-  public getDestinationsByDay(selectedDay: DayOfTheWeek) {
-    return this.store.pipe(
-      select(DestinationsSelectors.getDestinationsByDay(selectedDay))
+  public editDestination(destination: DestinationsEntity): Observable<boolean> {
+    this.store.dispatch(DestinationsActions.editDestination({ updateDestination: { id: destination.id, changes: destination } }));
+    return this.actions$.pipe(
+      ofType(DestinationsActions.editDestinationSuccess, DestinationsActions.editDestinationFailure),
+      take(1),
+      map((action) => action.type === DestinationsActions.editDestinationSuccess.type)
     );
   }
 

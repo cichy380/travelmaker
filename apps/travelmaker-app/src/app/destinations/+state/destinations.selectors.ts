@@ -4,7 +4,7 @@ import {
   State,
   destinationsAdapter,
 } from './destinations.reducer';
-import { DayOfTheWeek, DestinationsEntity } from './destinations.models';
+
 
 // Lookup the 'Destinations' feature state managed by NgRx
 export const getDestinationsState = createFeatureSelector<State>(
@@ -26,11 +26,6 @@ export const getDestinationsError = createSelector(
 export const getAllDestinations = createSelector(
   getDestinationsState,
   (state: State) => selectAll(state)
-);
-
-export const getDestinationsByDay = (selectedDay: DayOfTheWeek) => createSelector(
-  getAllDestinations,
-  (allDestinations: DestinationsEntity[]) => allDestinations.filter(destination => destination.day === selectedDay)
 );
 
 export const getDestinationsEntities = createSelector(

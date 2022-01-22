@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable, Subscription } from 'rxjs';
-import { DestinationsEntity } from './+state/destinations.models';
+import { Observable } from 'rxjs';
+import { DayOfTheWeek, DestinationsEntity } from './+state/destinations.models';
 import { DestinationsFacade } from './+state/destinations.facade';
 import { DaysOfTheWeekSheetComponent } from './components/days-of-the-week-sheet/days-of-the-week-sheet.component';
 import {
@@ -16,22 +16,23 @@ import {
   templateUrl: './destinations.component.html',
   styleUrls: ['./destinations.component.scss']
 })
-export class DestinationsComponent implements OnInit, OnDestroy {
-  public destinations$: Observable<DestinationsEntity[]> | undefined;
-  private subscription = new Subscription();
+export class DestinationsComponent implements OnInit {
+  public destinations$: Observable<DestinationsEntity[]>;
+  public selectedDay$: Observable<DayOfTheWeek>;
+  public loaded$: Observable<boolean>;
 
   constructor(
-    public facade: DestinationsFacade,
+    private facade: DestinationsFacade,
     private bottomSheet: MatBottomSheet,
     public dialog: MatDialog
   ) {
+    this.selectedDay$ = facade.selectedWeekday$;
+    this.destinations$ = facade.allDestinations$;
+    this.loaded$ = facade.loaded$;
   }
 
   ngOnInit(): void {
     this.facade.loadDestinations();
-    this.subscription = this.facade.selectedWeekday$.subscribe(selectedWeekday =>
-      this.destinations$ = this.facade.getDestinationsByDay(selectedWeekday)
-    );
   }
 
   public onDayOfTheWeekClick(): void {
@@ -53,7 +54,7 @@ export class DestinationsComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+  public compareWith(destination1: DestinationsEntity | undefined, destination2: DestinationsEntity | undefined) {
+    return !!destination1 && !!destination2 && destination1.id === destination2.id;
   }
 }

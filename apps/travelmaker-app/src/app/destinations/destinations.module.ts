@@ -12,6 +12,7 @@ import { DestinationsFacade } from './+state/destinations.facade';
 import { DestinationsComponent } from './destinations.component';
 import { DestinationAddFormComponent, DestinationEditFormComponent } from './components/destination-form/destination-form.component';
 import { DaysOfTheWeekSheetComponent } from './components/days-of-the-week-sheet/days-of-the-week-sheet.component';
+import { DestinationsByDayPipe } from './pipes/destinations-by-day.pipe';
 import { TranslateWeekdayPipe } from '../shared/pipes/translate-weekday.pipe';
 
 
@@ -21,6 +22,7 @@ import { TranslateWeekdayPipe } from '../shared/pipes/translate-weekday.pipe';
     DestinationAddFormComponent,
     DestinationEditFormComponent,
     DaysOfTheWeekSheetComponent,
+    DestinationsByDayPipe,
     TranslateWeekdayPipe,
   ],
   imports: [
