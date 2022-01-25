@@ -10,11 +10,13 @@ import { DestinationsFacade } from './+state/destinations.facade';
 import { DestinationsComponent } from './destinations.component';
 import {
   DestinationAddFormComponent,
-  DestinationEditFormComponent
+  DestinationEditFormComponent,
 } from './components/destination-form/destination-form.component';
 import { DaysOfTheWeekSheetComponent } from './components/days-of-the-week-sheet/days-of-the-week-sheet.component';
 import { DestinationsByDayPipe } from './pipes/destinations-by-day.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { DestinationListItemComponent } from './components/destination-list/destination-list-item/destination-list-item.component';
+import { DestinationListComponent } from './components/destination-list/destination-list.component';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import { SharedModule } from '../shared/shared.module';
     DestinationEditFormComponent,
     DaysOfTheWeekSheetComponent,
     DestinationsByDayPipe,
+    DestinationListComponent,
+    DestinationListItemComponent,
   ],
   imports: [
     CommonModule,

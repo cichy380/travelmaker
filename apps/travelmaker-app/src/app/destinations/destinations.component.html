@@ -1,21 +1,22 @@
-<ng-container *ngIf="selectedDay$ | async as day">
+<ng-container *ngIf="selectedDay$ | async as selectedDay">
   <mat-toolbar (click)="onDayOfTheWeekClick()" mat-ripple fxLayoutAlign="center center">
-    <h2>{{ day | translateWeekday }}</h2>
+    <h2>{{ selectedDay | translateWeekday }}</h2>
   </mat-toolbar>
 
   <mat-drawer-container fxFlex="grow">
     <mat-drawer-content>
-      <mat-selection-list *ngIf="loaded$ | async" [multiple]="false" [compareWith]="compareWith">
-        <mat-list-option
-          *ngFor="let destination of destinations$ | async | destinationsByDay:day"
-          (click)="onEditDestinationClick(destination)">
-          <mat-icon mat-list-icon class="material-icons-outlined destinations__list-option-icon">
-            place
-          </mat-icon>
-          <div mat-line class="font-weight-medium">{{ destination.name }}</div>
-          <div mat-line>{{ destination.city }} {{ destination.address }}</div>
-        </mat-list-option>
-      </mat-selection-list>
+      <ng-container *ngIf="loaded$ | async">
+        <ng-container *ngIf="allDestinations$ | async | destinationsByDay:selectedDay as destinationsOfSelectedDay">
+          <travelmaker-destination-list cdkDropList (cdkDropListDropped)="onDrop(destinationsOfSelectedDay, $event)">
+            <travelmaker-destination-list-item
+              cdkDrag
+              *ngFor="let destination of destinationsOfSelectedDay"
+              [destination]="destination"
+              (click)="onDestinationClick(destination)">
+            </travelmaker-destination-list-item>
+          </travelmaker-destination-list>
+        </ng-container>
+      </ng-container>
 
       <button
         mat-fab

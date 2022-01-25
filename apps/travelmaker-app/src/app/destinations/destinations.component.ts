@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
@@ -17,7 +18,7 @@ import {
   styleUrls: ['./destinations.component.scss']
 })
 export class DestinationsComponent implements OnInit {
-  public destinations$: Observable<DestinationsEntity[]>;
+  public allDestinations$: Observable<DestinationsEntity[]>;
   public selectedDay$: Observable<DayOfTheWeek>;
   public loaded$: Observable<boolean>;
 
@@ -27,7 +28,7 @@ export class DestinationsComponent implements OnInit {
     public dialog: MatDialog
   ) {
     this.selectedDay$ = facade.selectedWeekday$;
-    this.destinations$ = facade.allDestinations$;
+    this.allDestinations$ = facade.allDestinations$;
     this.loaded$ = facade.loaded$;
   }
 
@@ -46,12 +47,17 @@ export class DestinationsComponent implements OnInit {
     });
   }
 
-  public onEditDestinationClick(destination: DestinationsEntity): void {
+  public onDestinationClick(destination: DestinationsEntity): void {
     this.dialog.open(DestinationEditFormComponent, {
       panelClass: ['dialog-fullscreen'],
       data: { destination },
       autoFocus: false,
     });
+  }
+
+  onDrop(destinations: DestinationsEntity[], event: CdkDragDrop<DestinationsEntity[]>) {
+    moveItemInArray(destinations, event.previousIndex, event.currentIndex);
+    console.log(destinations.map(item => item.id));
   }
 
   public compareWith(destination1: DestinationsEntity | undefined, destination2: DestinationsEntity | undefined) {

@@ -9,10 +9,6 @@
   flex-direction: column;
 }
 
-.destinations__list-option-icon {
-  background-color: mat.get-color-from-palette(mat.$gray-palette, 200);
-}
-
 .destinations__fab {
   position: fixed;
   bottom: 16px;
