@@ -55,9 +55,9 @@ export class DestinationsComponent implements OnInit {
     });
   }
 
-  onDrop(destinations: DestinationsEntity[], event: CdkDragDrop<DestinationsEntity[]>) {
+  public onDrop(destinations: DestinationsEntity[], event: CdkDragDrop<DestinationsEntity[]>) {
     moveItemInArray(destinations, event.previousIndex, event.currentIndex);
-    console.log(destinations.map(item => item.id));
+    this.facade.changeOrder(destinations.map(item => item.id));
   }
 
   public compareWith(destination1: DestinationsEntity | undefined, destination2: DestinationsEntity | undefined) {

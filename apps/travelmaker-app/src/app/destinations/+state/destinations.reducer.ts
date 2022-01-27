@@ -8,8 +8,8 @@ import { DayOfTheWeek, DestinationId, DestinationsEntity } from './destinations.
 export const DESTINATIONS_FEATURE_KEY = 'destinations';
 
 export interface State extends EntityState<DestinationsEntity> {
-  selectedId?: DestinationId; // which Destinations record has been selected
-  loaded: boolean; // has the Destinations list been loaded
+  selectedId?: DestinationId;
+  loaded: boolean;
   error?: HttpErrorResponse | ApiErrorResponse | null;
   selectedWeekday: DayOfTheWeek;
 }
@@ -18,8 +18,9 @@ export interface DestinationsPartialState {
   readonly [DESTINATIONS_FEATURE_KEY]: State;
 }
 
-export const destinationsAdapter: EntityAdapter<DestinationsEntity> =
-  createEntityAdapter<DestinationsEntity>();
+export const destinationsAdapter: EntityAdapter<DestinationsEntity> = createEntityAdapter<DestinationsEntity>({
+  sortComparer: (a: DestinationsEntity, b: DestinationsEntity) => a.order > b.order ? 1 : -1
+});
 
 export const initialState: State = destinationsAdapter.getInitialState({
   loaded: false,
@@ -48,10 +49,12 @@ const destinationsReducer = createReducer(
   ),
   on(DestinationsActions.deleteDestinationFailure, (state, { error }) => ({ ...state, error })),
 
-  on(DestinationsActions.setSelectedWeekday, (state, { selectedWeekday }) => ({
-    ...state,
-    selectedWeekday,
-  })),
+  on(DestinationsActions.changeOrderDestinationsSuccess, (state, { updateDestinations }) =>
+    destinationsAdapter.updateMany(updateDestinations, { ...state })
+  ),
+  on(DestinationsActions.changeOrderDestinationsFailure, (state, { error }) => ({ ...state, error })),
+
+  on(DestinationsActions.setSelectedWeekday, (state, { selectedWeekday }) => ({ ...state, selectedWeekday })),
 );
 
 export function reducer(state: State | undefined, action: Action) {

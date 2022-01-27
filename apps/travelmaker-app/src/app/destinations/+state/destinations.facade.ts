@@ -40,7 +40,7 @@ export class DestinationsFacade {
     return this.actions$.pipe(
       ofType(DestinationsActions.addDestinationSuccess, DestinationsActions.addDestinationFailure),
       take(1),
-      map((action) => action.type === DestinationsActions.addDestinationSuccess.type)
+      map((action) => action.type === DestinationsActions.addDestinationSuccess.type),
     );
   }
 
@@ -49,7 +49,7 @@ export class DestinationsFacade {
     return this.actions$.pipe(
       ofType(DestinationsActions.editDestinationSuccess, DestinationsActions.editDestinationFailure),
       take(1),
-      map((action) => action.type === DestinationsActions.editDestinationSuccess.type)
+      map((action) => action.type === DestinationsActions.editDestinationSuccess.type),
     );
   }
 
@@ -58,7 +58,16 @@ export class DestinationsFacade {
     return this.actions$.pipe(
       ofType(DestinationsActions.deleteDestinationSuccess, DestinationsActions.deleteDestinationFailure),
       take(1),
-      map((action) => action.type === DestinationsActions.deleteDestinationSuccess.type)
+      map((action) => action.type === DestinationsActions.deleteDestinationSuccess.type),
+    );
+  }
+
+  public changeOrder(destinationIds: DestinationId[]): Observable<boolean> {
+    this.store.dispatch(DestinationsActions.changeOrderDestinations({ destinationIds }));
+    return this.actions$.pipe(
+      ofType(DestinationsActions.changeOrderDestinationsSuccess, DestinationsActions.changeOrderDestinationsFailure),
+      take(1),
+      map((action) => action.type === DestinationsActions.changeOrderDestinationsSuccess.type),
     );
   }
 

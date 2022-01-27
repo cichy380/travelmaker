@@ -51,6 +51,18 @@ export class DestinationsEffects {
     )
   );
 
+  order$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(DestinationsActions.changeOrderDestinations),
+      mergeMap(({ destinationIds }) => this.api.changeOrder(destinationIds).pipe(
+        map((response) => DestinationsActions.changeOrderDestinationsSuccess({
+          updateDestinations: response.data.map(destination => ({ id: destination.id, changes: destination })),
+        })),
+        catchError((error: HttpErrorResponse | ApiErrorResponse) => of(DestinationsActions.changeOrderDestinationsFailure({ error }))),
+      ))
+    )
+  );
+
   constructor(private readonly actions$: Actions, private api: DestinationsApiService) {
   }
 }

@@ -9,6 +9,7 @@ export interface DestinationsEntity {
   city: string;
   address: string;
   day: DayOfTheWeek;
+  order: number;
 }
 
 export enum DayOfTheWeek {

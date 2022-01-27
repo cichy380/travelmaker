@@ -10,13 +10,14 @@ import { ApiResponse } from '../../shared/models/ApiResponse.model';
 })
 export class DestinationsApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   public fetch() {
     return this.http.get<ApiResponse<DestinationsEntity[]>>(`${environment.API_URL}/destinations`);
   }
 
-  public add(destination: Omit<DestinationsEntity, 'id'>) {
+  public add(destination: Omit<DestinationsEntity, 'id' | 'order'>) {
     return this.http.post<ApiResponse<DestinationsEntity>>(`${environment.API_URL}/destinations`, destination);
   }
 
@@ -26,5 +27,9 @@ export class DestinationsApiService {
 
   public delete(destinationId: DestinationId) {
     return this.http.delete<ApiResponse<DestinationsEntity>>(`${environment.API_URL}/destinations/${destinationId}`);
+  }
+
+  public changeOrder(destinationIds: DestinationId[]) {
+    return this.http.patch<ApiResponse<DestinationsEntity[]>>(`${environment.API_URL}/destinations`, { order: destinationIds });
   }
 }

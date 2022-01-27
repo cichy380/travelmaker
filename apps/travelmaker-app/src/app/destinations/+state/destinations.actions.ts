@@ -68,6 +68,22 @@ export const deleteDestinationFailure = createAction(
 );
 
 
+export const changeOrderDestinations = createAction(
+  '[Destinations/API] Change Order of Destinations',
+  props<{ destinationIds: DestinationId[] }>(),
+);
+
+export const changeOrderDestinationsSuccess = createAction(
+  '[Destinations/API] Change Order of Destinations Success',
+  props<{ updateDestinations: Update<DestinationsEntity>[] }>(),
+);
+
+export const changeOrderDestinationsFailure = createAction(
+  '[Destinations/API] Change Order of Destinations Failure',
+  props<{ error: HttpErrorResponse | ApiErrorResponse }>(),
+);
+
+
 export const setSelectedWeekday = createAction(
   '[Destinations] Set Selected Weekday',
   props<{ selectedWeekday: DayOfTheWeek }>(),
