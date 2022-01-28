@@ -3,10 +3,10 @@
     <h2>{{ selectedDay | translateWeekday }}</h2>
   </mat-toolbar>
 
-  <mat-drawer-container fxFlex="grow">
-    <mat-drawer-content>
-      <ng-container *ngIf="loaded$ | async">
-        <ng-container *ngIf="allDestinations$ | async | destinationsByDay:selectedDay as destinationsOfSelectedDay">
+  <ng-container *ngIf="loaded$ | async">
+    <ng-container *ngIf="allDestinations$ | async | destinationsByDay:selectedDay as destinationsOfSelectedDay">
+      <mat-drawer-container fxFlex="grow">
+        <mat-drawer-content>
           <travelmaker-destination-list cdkDropList (cdkDropListDropped)="onDrop(destinationsOfSelectedDay, $event)">
             <travelmaker-destination-list-item
               cdkDrag
@@ -15,18 +15,27 @@
               (click)="onDestinationClick(destination)">
             </travelmaker-destination-list-item>
           </travelmaker-destination-list>
-        </ng-container>
-      </ng-container>
 
-      <button
-        mat-fab
-        (click)="onAddDestinationClick()"
-        color="primary"
-        class="destinations__fab"
-        aria-label="Add new destination">
-        <mat-icon class="material-icons-outlined">add_location_alt</mat-icon>
-      </button>
-    </mat-drawer-content>
-  </mat-drawer-container>
-  <footer><!-- link to map here --></footer>
+          <button
+            mat-fab
+            (click)="onAddDestinationClick()"
+            color="primary"
+            class="destinations__fab"
+            aria-label="Add new destination">
+            <mat-icon class="material-icons-outlined">add_location_alt</mat-icon>
+          </button>
+        </mat-drawer-content>
+      </mat-drawer-container>
+
+      <footer class="destinations__navigate-btn-wrap">
+        <a
+          mat-flat-button
+          color="accent"
+          [href]="destinationsOfSelectedDay | mapDirectionsUrl"
+          target="_blank">
+          Navigate
+        </a>
+      </footer>
+    </ng-container>
+  </ng-container>
 </ng-container>

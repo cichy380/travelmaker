@@ -6,16 +6,13 @@ import { Observable } from 'rxjs';
 import { DayOfTheWeek, DestinationsEntity } from './+state/destinations.models';
 import { DestinationsFacade } from './+state/destinations.facade';
 import { DaysOfTheWeekSheetComponent } from './components/days-of-the-week-sheet/days-of-the-week-sheet.component';
-import {
-  DestinationAddFormComponent,
-  DestinationEditFormComponent,
-} from './components/destination-form/destination-form.component';
+import { DestinationAddFormComponent, DestinationEditFormComponent } from './components/destination-form/destination-form.component';
 
 
 @Component({
   selector: 'travelmaker-destinations',
   templateUrl: './destinations.component.html',
-  styleUrls: ['./destinations.component.scss']
+  styleUrls: ['./destinations.component.scss'],
 })
 export class DestinationsComponent implements OnInit {
   public allDestinations$: Observable<DestinationsEntity[]>;
@@ -25,7 +22,7 @@ export class DestinationsComponent implements OnInit {
   constructor(
     private facade: DestinationsFacade,
     private bottomSheet: MatBottomSheet,
-    public dialog: MatDialog
+    private dialog: MatDialog,
   ) {
     this.selectedDay$ = facade.selectedWeekday$;
     this.allDestinations$ = facade.allDestinations$;
@@ -60,7 +57,4 @@ export class DestinationsComponent implements OnInit {
     this.facade.changeOrder(destinations.map(item => item.id));
   }
 
-  public compareWith(destination1: DestinationsEntity | undefined, destination2: DestinationsEntity | undefined) {
-    return !!destination1 && !!destination2 && destination1.id === destination2.id;
-  }
 }
