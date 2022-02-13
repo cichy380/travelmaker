@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
-import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { NgProgressModule } from 'ngx-progressbar';
+import { NgProgressHttpModule } from 'ngx-progressbar/http';
 import { environment } from '../environments/environment';
+import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './shared/material/material.module';
 
 
@@ -34,6 +35,8 @@ import { MaterialModule } from './shared/material/material.module';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
+    NgProgressModule.withConfig({spinner: false, meteor: false}),
+    NgProgressHttpModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

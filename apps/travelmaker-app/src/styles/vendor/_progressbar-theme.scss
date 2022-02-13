@@ -1,0 +1,14 @@
+// Angular Progressbar
+// https://github.com/MurhafSousli/ngx-progressbar/wiki/Styling
+
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@mixin color($theme) {
+  $color-config: mat.get-color-config($theme);
+  $primary-palette: map.get($color-config, "primary");
+
+  .ng-bar {
+    background: mat.get-color-from-palette($primary-palette, 600) !important;
+  }
+}
