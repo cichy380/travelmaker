@@ -81,6 +81,9 @@ MIT
 @ngrx/store-devtools
 MIT
 
+ngx-progressbar
+MIT
+
 rxjs
 Apache-2.0
                                Apache License
