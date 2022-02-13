@@ -1,5 +1,5 @@
 <ng-container *ngIf="selectedDay$ | async as selectedDay">
-  <mat-toolbar (click)="onDayOfTheWeekClick()" mat-ripple fxLayoutAlign="center center">
+  <mat-toolbar (click)="onDayOfTheWeekClick()" matRipple fxLayoutAlign="center center">
     <h2>{{ selectedDay | translateWeekday }}</h2>
   </mat-toolbar>
 
@@ -13,6 +13,9 @@
               *ngFor="let destination of destinationsOfSelectedDay"
               [destination]="destination"
               (click)="onDestinationClick(destination)">
+              <mat-icon mat-list-icon cdkDragHandle class="material-icons-outlined opacity-33" title="Drag to reorder">
+                drag_handle
+              </mat-icon>
             </travelmaker-destination-list-item>
           </travelmaker-destination-list>
 

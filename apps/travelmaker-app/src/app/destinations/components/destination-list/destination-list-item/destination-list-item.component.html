@@ -1,10 +1,20 @@
-<article *ngIf="destination" class="destination-list-item" fxLayoutAlign="center center" mat-ripple>
-  <mat-icon mat-list-icon class="material-icons-outlined destination-list-item__icon">
-    place
-  </mat-icon>
+<article
+  *ngIf="destination"
+  class="destination-list-item"
+  fxLayoutAlign="center center"
+  matRipple
+  [matRippleTrigger]="rippleTrigger">
 
-  <div class="destination-list-item__body" fxFlex="grow">
-    <div class="font-weight-medium">{{ destination.name }}</div>
-    <div>{{ destination.city }}, {{ destination.address }}</div>
+  <div fxLayoutAlign="center center" fxFlex="grow" #rippleTrigger>
+    <mat-icon mat-list-icon class="material-icons-outlined destination-list-item__icon">
+      place
+    </mat-icon>
+
+    <div class="destination-list-item__body" fxFlex="grow">
+      <div class="font-weight-medium">{{ destination.name }}</div>
+      <div class="opacity-75">{{ destination.city }}, {{ destination.address }}</div>
+    </div>
   </div>
+
+  <ng-content></ng-content>
 </article>
