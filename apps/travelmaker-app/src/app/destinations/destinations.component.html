@@ -3,7 +3,7 @@
     <h2>{{ selectedDay | translateWeekday }}</h2>
   </mat-toolbar>
 
-  <ng-container *ngIf="loaded$ | async">
+  <ng-container *ngIf="allDestinationLoaded$ | async; else loader">
     <ng-container *ngIf="allDestinations$ | async | destinationsByDay:selectedDay as destinationsOfSelectedDay">
       <mat-drawer-container fxFlex="grow">
         <mat-drawer-content>
@@ -41,4 +41,12 @@
       </footer>
     </ng-container>
   </ng-container>
+
+  <ng-template #loader>
+    <mat-drawer-container *ngIf="isLoading$ | async" fxFlex="grow">
+      <mat-drawer-content fxLayoutAlign="center center">
+        <mat-spinner></mat-spinner>
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </ng-template>
 </ng-container>

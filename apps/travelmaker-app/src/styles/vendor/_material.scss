@@ -31,6 +31,7 @@ $travel-theme: mat.define-light-theme((
 @include mat.bottom-sheet-theme($travel-theme);
 @include mat.form-field-theme($travel-theme);
 @include mat.dialog-theme($travel-theme);
+@include mat.progress-spinner-theme($travel-theme);
 @include destinations-component.color($travel-theme);
 @include days-of-the-week-sheet.color($travel-theme);
 @include progressbar.color($travel-theme);
