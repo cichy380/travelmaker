@@ -1,0 +1,17 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+
+@mixin color($theme) {
+  $color-config: mat.get-color-config($theme);
+  $background-success: map.get($color-config, "accent");
+  $background-error: map.get($color-config, "warn");
+
+  .notification-bar--success {
+    background-color: mat.get-color-from-palette($background-success, 400);
+  }
+
+  .notification-bar--error {
+    background-color: mat.get-color-from-palette($background-error, 400);
+  }
+}

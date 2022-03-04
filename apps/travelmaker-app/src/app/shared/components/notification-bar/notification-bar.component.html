@@ -1,0 +1,9 @@
+<div fxLayout>
+  <div fxFlex="grow">
+    {{ data.text }}
+  </div>
+
+  <button mat-icon-button (click)="snackBar.dismiss()" class="notification-bar__action-button">
+    <mat-icon class="material-icons-outlined notification-bar__action-icon opacity-75">close</mat-icon>
+  </button>
+</div>
