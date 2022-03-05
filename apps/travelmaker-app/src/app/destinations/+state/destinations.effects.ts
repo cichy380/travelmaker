@@ -26,7 +26,7 @@ export class DestinationsEffects {
       ofType(DestinationsActions.addDestination),
       mergeMap(({ destination }) => this.api.add(destination).pipe(
         map((response) => DestinationsActions.addDestinationSuccess({ destination: response.data })),
-        catchError((error: HttpErrorResponse | ApiErrorResponse) => of(DestinationsActions.addDestinationFailure({ error }))),
+        catchError((error: HttpErrorResponse) => of(DestinationsActions.addDestinationFailure({ error: error.error }))),
       ))
     )
   );

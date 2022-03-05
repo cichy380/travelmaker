@@ -7,8 +7,10 @@ export type ApiSuccessResponse<T> = {
 
 export type ApiErrorResponse = {
   message?: string;
-  details?: { [formFieldName in string]: ApiFieldError }
+  details?: ApiErrorResponseDetails;
 }
+
+export type ApiErrorResponseDetails = { [formFieldName in string]: ApiFieldError };
 
 type ApiFieldError = {
   kind: string;

@@ -9,6 +9,7 @@ import {
   ConfirmDialogComponent,
   ConfirmDialogDataModel,
 } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { ApiErrorResponseDetails } from '../../../core/models/ApiResponse.model';
 
 
 @Component({
@@ -33,8 +34,9 @@ export class DestinationAddFormComponent {
   }
 
   public onSubmit(day: DayOfTheWeek) {
-    this.facade.addDestination({ ...this.form.value, day })
-      .subscribe(success => success && this.dialogRef.close());
+    this.facade.addDestination({ ...this.form.value, day }).subscribe({
+      next: formDataSuccessfulSaved => formDataSuccessfulSaved ? this.dialogRef.close() : this.handleFormControlsErrors(),
+    });
   }
 
   public onChangeDayClick(): void {
@@ -42,7 +44,19 @@ export class DestinationAddFormComponent {
   }
 
   public onDeleteClick() {
-    return
+    return;
+  }
+
+  private handleFormControlsErrors(): void {
+    this.facade.error$.subscribe({
+      next: error => error?.details && this.setFormControlsErrors(error.details),
+    });
+  }
+
+  private setFormControlsErrors(formControlErrors: ApiErrorResponseDetails): void {
+    Object.entries(formControlErrors).forEach(([formControlName, formControlError]) =>
+      this.form.get(formControlName)?.setErrors({ msg: formControlError.message })
+    );
   }
 }
 

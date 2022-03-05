@@ -21,16 +21,19 @@
       <mat-form-field appearance="outline" class="destination-form__form-field">
         <mat-label>name</mat-label>
         <input matInput [formControlName]="'name'">
+        <mat-error *ngIf="form.get('name')?.invalid">{{ form.get('name')?.getError('msg') }}</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="destination-form__form-field">
         <mat-label>city</mat-label>
         <input type="text" matInput [formControlName]="'city'">
+        <mat-error *ngIf="form.get('city')?.invalid">{{ form.get('city')?.getError('msg') }}</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="destination-form__form-field">
         <mat-label>address</mat-label>
         <input matInput [formControlName]="'address'">
+        <mat-error *ngIf="form.get('address')?.invalid">{{ form.get('address')?.getError('msg') }}</mat-error>
       </mat-form-field>
     </div>
 

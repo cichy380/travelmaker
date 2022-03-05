@@ -25,6 +25,9 @@ export class DestinationsFacade {
   selectedWeekday$ = this.store.pipe(
     select(DestinationsSelectors.getSelectedWeekday)
   );
+  error$ = this.store.pipe(
+    select(DestinationsSelectors.getDestinationsError)
+  );
 
   constructor(
     private readonly store: Store,

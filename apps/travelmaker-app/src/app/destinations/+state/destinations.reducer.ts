@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on, Action } from '@ngrx/store';
 import { ApiErrorResponse } from '../../core/models/ApiResponse.model';
@@ -10,7 +9,7 @@ export const DESTINATIONS_FEATURE_KEY = 'destinations';
 export interface State extends EntityState<DestinationsEntity> {
   selectedId?: DestinationId;
   loaded: boolean;
-  error?: HttpErrorResponse | ApiErrorResponse | null;
+  error?: ApiErrorResponse | null;
   selectedWeekday: DayOfTheWeek;
 }
 

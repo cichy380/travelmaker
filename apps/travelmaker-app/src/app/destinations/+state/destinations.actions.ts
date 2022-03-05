@@ -32,7 +32,7 @@ export const addDestinationSuccess = createAction(
 
 export const addDestinationFailure = createAction(
   '[Destinations/API] Add Destination Failure',
-  props<{ error: HttpErrorResponse | ApiErrorResponse }>(),
+  props<{ error: ApiErrorResponse }>(),
 );
 
 
