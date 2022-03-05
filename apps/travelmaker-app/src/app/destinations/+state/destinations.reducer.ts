@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on, Action } from '@ngrx/store';
-import { ApiErrorResponse } from '../../shared/models/ApiResponse.model';
+import { ApiErrorResponse } from '../../core/models/ApiResponse.model';
 import * as DestinationsActions from './destinations.actions';
 import { DayOfTheWeek, DestinationId, DestinationsEntity } from './destinations.models';
 

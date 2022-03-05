@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 import { DayOfTheWeek, DestinationId, DestinationsEntity } from './destinations.models';
-import { ApiErrorResponse } from '../../shared/models/ApiResponse.model';
+import { ApiErrorResponse } from '../../core/models/ApiResponse.model';
 
 
 export const loadDestinations = createAction(

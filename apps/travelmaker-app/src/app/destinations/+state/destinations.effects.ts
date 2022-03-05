@@ -5,7 +5,7 @@ import { catchError, map, mergeMap, of, switchMap } from 'rxjs';
 
 import * as DestinationsActions from './destinations.actions';
 import { DestinationsApiService } from '../services/destinations-api.service';
-import { ApiErrorResponse } from '../../shared/models/ApiResponse.model';
+import { ApiErrorResponse } from '../../core/models/ApiResponse.model';
 
 
 @Injectable()
