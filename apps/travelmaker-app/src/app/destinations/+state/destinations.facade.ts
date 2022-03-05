@@ -38,7 +38,7 @@ export class DestinationsFacade {
     this.store.dispatch(DestinationsActions.loadDestinations());
   }
 
-  public addDestination(destination: DestinationsEntity): Observable<boolean> {
+  public addDestination(destination: Omit<DestinationsEntity, 'id' | 'order'>): Observable<boolean> {
     this.store.dispatch(DestinationsActions.addDestination({ destination }));
     return this.actions$.pipe(
       ofType(DestinationsActions.addDestinationSuccess, DestinationsActions.addDestinationFailure),

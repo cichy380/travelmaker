@@ -5,9 +5,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subject } from 'rxjs';
 import { DayOfTheWeek, DestinationsEntity } from './+state/destinations.models';
 import { DestinationsFacade } from './+state/destinations.facade';
-import { DaysOfTheWeekSheetComponent } from './components/days-of-the-week-sheet/days-of-the-week-sheet.component';
-import { DestinationAddFormComponent, DestinationEditFormComponent } from './components/destination-form/destination-form.component';
 import { LoadingService } from '../shared/services/loading.service';
+import { DaysOfTheWeekSheetComponent } from './components/days-of-the-week-sheet/days-of-the-week-sheet.component';
+import { AddDestinationDialogComponent } from './components/add-destination-dialog/add-destination-dialog.component';
 
 
 @Component({
@@ -42,18 +42,18 @@ export class DestinationsComponent implements OnInit {
   }
 
   public onAddDestinationClick(): void {
-    this.dialog.open(DestinationAddFormComponent, {
+    this.dialog.open(AddDestinationDialogComponent, {
       panelClass: ['dialog-fullscreen'],
       autoFocus: false,
     });
   }
 
   public onDestinationClick(destination: DestinationsEntity): void {
-    this.dialog.open(DestinationEditFormComponent, {
-      panelClass: ['dialog-fullscreen'],
-      data: { destination },
-      autoFocus: false,
-    });
+    // this.dialog.open(DestinationEditFormComponent, {
+    //   panelClass: ['dialog-fullscreen'],
+    //   data: { destination },
+    //   autoFocus: false,
+    // });
   }
 
   public onDrop(destinations: DestinationsEntity[], event: CdkDragDrop<DestinationsEntity[]>) {

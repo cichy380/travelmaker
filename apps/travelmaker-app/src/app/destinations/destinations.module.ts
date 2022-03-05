@@ -10,27 +10,27 @@ import * as fromDestinations from './+state/destinations.reducer';
 import { DestinationsEffects } from './+state/destinations.effects';
 import { DestinationsFacade } from './+state/destinations.facade';
 import { DestinationsComponent } from './destinations.component';
-import {
-  DestinationAddFormComponent,
-  DestinationEditFormComponent,
-} from './components/destination-form/destination-form.component';
+import { DestinationFormComponent } from './components/destination-form/destination-form.component';
 import { DaysOfTheWeekSheetComponent } from './components/days-of-the-week-sheet/days-of-the-week-sheet.component';
 import { DestinationListComponent } from './components/destination-list/destination-list.component';
 import { DestinationListItemComponent } from './components/destination-list/destination-list-item/destination-list-item.component';
 import { DestinationsByDayPipe } from './pipes/destinations-by-day.pipe';
 import { MapDirectionsUrlPipe } from './pipes/map-directions-url.pipe';
+import { EditDestinationDialogComponent } from './components/edit-destination-dialog/edit-destination-dialog.component';
+import { AddDestinationDialogComponent } from './components/add-destination-dialog/add-destination-dialog.component';
 
 
 @NgModule({
   declarations: [
     DestinationsComponent,
-    DestinationAddFormComponent,
-    DestinationEditFormComponent,
+    DestinationFormComponent,
     DaysOfTheWeekSheetComponent,
     DestinationListComponent,
     DestinationListItemComponent,
     DestinationsByDayPipe,
     MapDirectionsUrlPipe,
+    EditDestinationDialogComponent,
+    AddDestinationDialogComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,11 @@
+<div fxLayout="column" fxFlexFill>
+  <header class="destination-form__header" fxLayoutAlign="space-between">
+    <button mat-icon-button mat-dialog-close aria-label="Cancel form">
+      <mat-icon class="material-icons-outlined">arrow_back</mat-icon>
+    </button>
+  </header>
+
+  <travelmaker-destination-form fxFlex="grow"
+    [submitAction]="addDestination" (successfullySent)="onFormSuccessfullySent()" (weekdayClick)="onWeekdayClick()">
+  </travelmaker-destination-form>
+</div>

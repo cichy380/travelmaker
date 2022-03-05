@@ -22,7 +22,7 @@ export const loadDestinationsFailure = createAction(
 
 export const addDestination = createAction(
   '[Destinations/API] Add Destination',
-  props<{ destination: DestinationsEntity }>(),
+  props<{ destination: Omit<DestinationsEntity, 'id' | 'order'> }>(),
 );
 
 export const addDestinationSuccess = createAction(
