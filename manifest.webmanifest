@@ -1,9 +1,9 @@
 {
-  "name": "travelmaker-app",
-  "short_name": "travelmaker-app",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
-  "display": "standalone",
+  "name": "Travelmaker",
+  "short_name": "Travelmaker",
+  "theme_color": "#9c27b0",
+  "background_color": "#ffffff",
+  "display": "fullscreen",
   "scope": "./",
   "start_url": "./",
   "icons": [

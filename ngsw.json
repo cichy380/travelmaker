@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1646579806849,
+  "timestamp": 1646580921013,
   "index": "/travelmaker/index.html",
   "assetGroups": [
     {
@@ -54,7 +54,7 @@
     "/travelmaker/favicon.ico": "0163cad16a34e159819ec8a28b454ef56faea5a0",
     "/travelmaker/index.html": "b60b47e30f4e81aebdbd6660fb8674f4122e96cc",
     "/travelmaker/main.2f91e655187b30c0.js": "e9d6b6785cda8911684af8b87f5e7eb19477615e",
-    "/travelmaker/manifest.webmanifest": "d5fa0911bb7bb951e1308a1e61f6937bdbc5e6b9",
+    "/travelmaker/manifest.webmanifest": "70395158a360843b39ab2d25fc50ac0c6f6a32f9",
     "/travelmaker/polyfills.97ddf4d8b5d11b7f.js": "bb45dcb879c3e3192aeb06b433af57d36babcad9",
     "/travelmaker/runtime.63c51b24ab89ff1d.js": "3dc9c193d72986b4801e1607759117b005012959",
     "/travelmaker/styles.9a572d5ad841a544.css": "9fd7498a63b7986b46cbfd35aa6ccc375d6e8dcb"
