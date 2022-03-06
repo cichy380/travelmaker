@@ -1,5 +1,7 @@
 <main fxLayout="column" fxFill>
   <ng-progress></ng-progress>
-  <mat-toolbar class="fixed-top"></mat-toolbar>
+  <mat-toolbar class="fixed-top" [hidden]="true">
+    <!--user icon here-->
+  </mat-toolbar>
   <router-outlet></router-outlet>
 </main>

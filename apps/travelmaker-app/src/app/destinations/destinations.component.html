@@ -1,5 +1,5 @@
 <ng-container *ngIf="selectedDay$ | async as selectedDay">
-  <mat-toolbar (click)="onDayOfTheWeekClick()" matRipple fxLayoutAlign="center center">
+  <mat-toolbar (click)="onDayOfTheWeekClick()" matRipple fxLayoutAlign="center center" class="bg-white">
     <h2>{{ selectedDay | translateWeekday }}</h2>
   </mat-toolbar>
 
