@@ -1,0 +1,81 @@
+{
+  "configVersion": 1,
+  "timestamp": 1646579806849,
+  "index": "/travelmaker/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/travelmaker/favicon.ico",
+        "/travelmaker/index.html",
+        "/travelmaker/main.2f91e655187b30c0.js",
+        "/travelmaker/manifest.webmanifest",
+        "/travelmaker/polyfills.97ddf4d8b5d11b7f.js",
+        "/travelmaker/runtime.63c51b24ab89ff1d.js",
+        "/travelmaker/styles.9a572d5ad841a544.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/travelmaker/assets/icons/icon-128x128.png",
+        "/travelmaker/assets/icons/icon-144x144.png",
+        "/travelmaker/assets/icons/icon-152x152.png",
+        "/travelmaker/assets/icons/icon-192x192.png",
+        "/travelmaker/assets/icons/icon-384x384.png",
+        "/travelmaker/assets/icons/icon-512x512.png",
+        "/travelmaker/assets/icons/icon-72x72.png",
+        "/travelmaker/assets/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/travelmaker/assets/icons/icon-128x128.png": "6ca3dc93bf3c23417af6e467a80fcdd3a42033eb",
+    "/travelmaker/assets/icons/icon-144x144.png": "0a9736e93bc200a1e80193268f187e6359e093a1",
+    "/travelmaker/assets/icons/icon-152x152.png": "e21df70f47e4ff0bb3efba902ebf28c444ce8ede",
+    "/travelmaker/assets/icons/icon-192x192.png": "091f0688cb6f655732a1b9b867af5a3746ecb34f",
+    "/travelmaker/assets/icons/icon-384x384.png": "e4ba8a019a694de004e46dd81d27efa0b3a5d3eb",
+    "/travelmaker/assets/icons/icon-512x512.png": "5e5783b36ff5f89205bd2da13d41d0792f42c2be",
+    "/travelmaker/assets/icons/icon-72x72.png": "ca6359b1272a4cd574651667f764735a4b74ffda",
+    "/travelmaker/assets/icons/icon-96x96.png": "fc3dcf44584d46f2184bca919e51193c43ce994e",
+    "/travelmaker/favicon.ico": "0163cad16a34e159819ec8a28b454ef56faea5a0",
+    "/travelmaker/index.html": "b60b47e30f4e81aebdbd6660fb8674f4122e96cc",
+    "/travelmaker/main.2f91e655187b30c0.js": "e9d6b6785cda8911684af8b87f5e7eb19477615e",
+    "/travelmaker/manifest.webmanifest": "d5fa0911bb7bb951e1308a1e61f6937bdbc5e6b9",
+    "/travelmaker/polyfills.97ddf4d8b5d11b7f.js": "bb45dcb879c3e3192aeb06b433af57d36babcad9",
+    "/travelmaker/runtime.63c51b24ab89ff1d.js": "3dc9c193d72986b4801e1607759117b005012959",
+    "/travelmaker/styles.9a572d5ad841a544.css": "9fd7498a63b7986b46cbfd35aa6ccc375d6e8dcb"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
