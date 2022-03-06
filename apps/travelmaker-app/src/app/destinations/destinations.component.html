@@ -7,17 +7,31 @@
     <ng-container *ngIf="allDestinations$ | async | destinationsByDay:selectedDay as destinationsOfSelectedDay">
       <mat-drawer-container fxFlex="grow">
         <mat-drawer-content>
-          <travelmaker-destination-list cdkDropList (cdkDropListDropped)="onDrop(destinationsOfSelectedDay, $event)">
-            <travelmaker-destination-list-item
-              cdkDrag
-              *ngFor="let destination of destinationsOfSelectedDay"
-              [destination]="destination"
-              (click)="onDestinationClick(destination)">
-              <mat-icon mat-list-icon cdkDragHandle class="material-icons-outlined opacity-33" title="Drag to reorder">
-                drag_handle
-              </mat-icon>
-            </travelmaker-destination-list-item>
-          </travelmaker-destination-list>
+          <ng-container *ngIf="destinationsOfSelectedDay.length; else noDestinations">
+            <travelmaker-destination-list cdkDropList (cdkDropListDropped)="onDrop(destinationsOfSelectedDay, $event)">
+              <travelmaker-destination-list-item
+                cdkDrag
+                *ngFor="let destination of destinationsOfSelectedDay"
+                [destination]="destination"
+                (click)="onDestinationClick(destination)">
+                <mat-icon mat-list-icon cdkDragHandle class="material-icons-outlined opacity-33" title="Drag to reorder">
+                  drag_handle
+                </mat-icon>
+              </travelmaker-destination-list-item>
+            </travelmaker-destination-list>
+          </ng-container>
+
+          <ng-template #noDestinations>
+            <mat-drawer-container fxFlex="grow">
+              <mat-drawer-content fxLayout="column" fxLayoutAlign="center center">
+                <mat-icon mat-list-icon class="material-icons-outlined destinations__empty-map-icon opacity-33">
+                  map
+                </mat-icon>
+                <h2 class="destinations__empty-map-title">Empty map</h2>
+                <p>Add the first destination for this day.</p>
+              </mat-drawer-content>
+            </mat-drawer-container>
+          </ng-template>
 
           <button
             mat-fab
