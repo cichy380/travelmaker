@@ -3,10 +3,15 @@
     <button mat-icon-button mat-dialog-close aria-label="Cancel form">
       <mat-icon class="material-icons-outlined">arrow_back</mat-icon>
     </button>
+
+    <button mat-icon-button color="warn" aria-label="Delete item" (click)="onDeleteClick()">
+      <mat-icon class="material-icons-outlined">delete</mat-icon>
+    </button>
   </header>
 
   <travelmaker-destination-form
     fxFlex="grow"
-    [submitAction]="onAddDestination" (successfullySent)="onFormSuccessfullySent()" (weekdayClick)="onWeekdayClick()">
+    [values]="data.destination" [submitAction]="onEditDestination"
+    (successfullySent)="onFormSuccessfullySent()" (weekdayClick)="onWeekdayClick()">
   </travelmaker-destination-form>
 </div>

@@ -5,6 +5,7 @@ import { DestinationsFacade } from '../../+state/destinations.facade';
 import { DestinationsEntity } from '../../+state/destinations.models';
 import { DaysOfTheWeekSheetComponent } from '../days-of-the-week-sheet/days-of-the-week-sheet.component';
 
+
 @Component({
   selector: 'travelmaker-add-destination-dialog',
   templateUrl: './add-destination-dialog.component.html',
@@ -19,9 +20,7 @@ export class AddDestinationDialogComponent {
   ) {
   }
 
-  public addDestination() {
-    return (data: Omit<DestinationsEntity, 'id' | 'order'>) => this.facade.addDestination(data);
-  }
+  public onAddDestination = (data: Omit<DestinationsEntity, 'id' | 'order'>) => this.facade.addDestination(data);
 
   public onWeekdayClick(): void {
     this.bottomSheet.open(DaysOfTheWeekSheetComponent, { restoreFocus: false });

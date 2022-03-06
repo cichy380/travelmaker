@@ -8,6 +8,7 @@ import { DestinationsFacade } from './+state/destinations.facade';
 import { LoadingService } from '../shared/services/loading.service';
 import { DaysOfTheWeekSheetComponent } from './components/days-of-the-week-sheet/days-of-the-week-sheet.component';
 import { AddDestinationDialogComponent } from './components/add-destination-dialog/add-destination-dialog.component';
+import { EditDestinationDialogComponent } from './components/edit-destination-dialog/edit-destination-dialog.component';
 
 
 @Component({
@@ -49,11 +50,11 @@ export class DestinationsComponent implements OnInit {
   }
 
   public onDestinationClick(destination: DestinationsEntity): void {
-    // this.dialog.open(DestinationEditFormComponent, {
-    //   panelClass: ['dialog-fullscreen'],
-    //   data: { destination },
-    //   autoFocus: false,
-    // });
+    this.dialog.open(EditDestinationDialogComponent, {
+      panelClass: ['dialog-fullscreen'],
+      data: { destination },
+      autoFocus: false,
+    });
   }
 
   public onDrop(destinations: DestinationsEntity[], event: CdkDragDrop<DestinationsEntity[]>) {
