@@ -1,0 +1,28 @@
+{
+  "root": "apps/travelmaker-app-e2e",
+  "sourceRoot": "apps/travelmaker-app-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/travelmaker-app-e2e/cypress.json",
+        "devServerTarget": "travelmaker-app:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "travelmaker-app:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/travelmaker-app-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["travelmaker-app"]
+}
