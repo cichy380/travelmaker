@@ -21,12 +21,15 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "apps/travelmaker-app/src/favicon.ico",
-              "apps/travelmaker-app/src/assets"
+              "apps/travelmaker-app/src/assets",
+              "apps/travelmaker-app/src/manifest.webmanifest"
             ],
             "styles": [
               "apps/travelmaker-app/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "serviceWorker": true,
+            "ngswConfigPath": "apps/travelmaker-app/ngsw-config.json"
           },
           "configurations": {
             "production": {
