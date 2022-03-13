@@ -8,10 +8,11 @@
     "start": "nx serve",
     "build": "nx build",
     "build:prod": "nx build --configuration production --base-href /travelmaker/",
+    "build:api": "nx build api",
+    "build:api:prod": "nx build api --configuration production",
     "test": "nx test",
     "test:ci": "nx test --watch=false --browsers=ChromeHeadless",
-    "lint": "nx lint",
-    "nestjs": "nx g @nrwl/nest:app api --frontendProject travelmaker-app"
+    "lint": "nx lint"
   },
   "private": true,
   "dependencies": {

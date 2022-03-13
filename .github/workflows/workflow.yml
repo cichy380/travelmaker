@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - nestjs
 
 jobs:
   build:
@@ -27,8 +28,11 @@ jobs:
       - name: Test
         run: npm run test:ci
 
-      - name: Build
+      - name: Build App
         run: npm run build:prod
+
+      - name: Build API
+        run: npm run build:api:prod
 
       - name: Archive build
         if: success()
@@ -58,3 +62,14 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: dist/apps/travelmaker-app
           enable_jekyll: true
+
+      - name: Publish API on Heroku
+        if: success()
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "travelmaker-nestjs-api"
+          heroku_email: "marcin.dobroszek@gmail.com"
+          appdir: dist/apps/api
+        env:
+          HD_PORT: 80
