@@ -1,16 +1,14 @@
 {
   "name": "travelmaker",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "start:app": "nx serve",
     "start": "node dist/apps/api/main.js",
-    "build": "nx build api",
-    "build:prod": "nx build --configuration production --base-href /travelmaker/",
-    "build:api": "nx build api",
-    "build:api:prod": "nx build api --configuration production",
+    "build": "nx build api --configuration production",
+    "build:app:prod": "nx build --configuration production --base-href /travelmaker/",
     "test": "nx test",
     "test:ci": "nx test --watch=false --browsers=ChromeHeadless",
     "lint": "nx lint"
