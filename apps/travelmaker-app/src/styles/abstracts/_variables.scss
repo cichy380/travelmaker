@@ -4,6 +4,4 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
 
-@debug mat.get-color-from-palette(mat.$gray-palette, 50);
-
 $font-family: Roboto, "Helvetica Neue", sans-serif;

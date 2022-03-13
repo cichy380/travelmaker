@@ -5,10 +5,9 @@
   "scripts": {
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
-    "prestart:api:prod": "npm run build:api:prod",
-    "start": "nx serve",
-    "start:api:prod": "node dist/apps/api/main.js",
-    "build": "nx build",
+    "start:app": "nx serve",
+    "start": "node dist/apps/api/main.js",
+    "build": "nx build api",
     "build:prod": "nx build --configuration production --base-href /travelmaker/",
     "build:api": "nx build api",
     "build:api:prod": "nx build api --configuration production",
