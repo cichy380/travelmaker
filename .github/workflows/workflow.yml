@@ -70,6 +70,6 @@ jobs:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: "travelmaker-nestjs-api"
           heroku_email: "marcin.dobroszek@gmail.com"
-          appdir: dist/apps/api
+          branch: nestjs
         env:
           HD_PORT: 80
