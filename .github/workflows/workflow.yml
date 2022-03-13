@@ -28,11 +28,8 @@ jobs:
       - name: Test
         run: npm run test:ci
 
-      - name: Build App
+      - name: Build Angular App
         run: npm run build:prod
-
-      - name: Build API
-        run: npm run build:api:prod
 
       - name: Archive build
         if: success()
