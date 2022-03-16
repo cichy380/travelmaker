@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from "@nestjs/typeorm";
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { environment } from '../environments/environment';
 import { Destination } from './destination/destination.entity';
 import { DestinationModule } from './destination/destination.module';
-import { ConfigModule, ConfigService } from "@nestjs/config";
 
 
 
@@ -17,7 +18,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
         port: configService.get('TYPEORM_PORT'),
         database: configService.get('TYPEORM_DATABASE'),
         entities: [ Destination ],
-        synchronize: configService.get('TYPEORM_SYNCHRONIZE'),
+        synchronize: !environment.production,
       }),
       inject: [ConfigService],
     }),

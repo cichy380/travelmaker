@@ -73,4 +73,3 @@ jobs:
           HD_TYPEORM_URL: ${{ secrets.TYPEORM_URL }}
           HD_TYPEORM_PORT: ${{ secrets.TYPEORM_PORT }}
           HD_TYPEORM_DATABASE: ${{ secrets.TYPEORM_DATABASE }}
-          HD_TYPEORM_SYNCHRONIZE: ${{ secrets.TYPEORM_SYNCHRONIZE }}
