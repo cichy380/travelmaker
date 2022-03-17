@@ -17,4 +17,10 @@ export class DestinationService {
       this.destRepository.find()
     );
   }
+
+  async findOne(id: string): Promise<ResponseData<Destination[]>> {
+    return this.responseService.createResponse(
+      this.destRepository.findByIds([ id ])
+    );
+  }
 }

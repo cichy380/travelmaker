@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from "@nestjs/common";
 import { ResponseData } from '../shared/response.service';
 import { DestinationService } from './destination.service';
 import { Destination } from './destination.entity';
@@ -10,5 +10,10 @@ export class DestinationController {
   @Get()
   findAll(): Promise<ResponseData<Destination[]>> {
     return this.destService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string): Promise<ResponseData<Destination[]>> {
+    return this.destService.findOne(id);
   }
 }
