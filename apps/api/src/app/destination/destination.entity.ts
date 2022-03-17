@@ -18,4 +18,7 @@ export class Destination {
 
   @Column()
   day: Weekday;
+
+  @Column()
+  order: number;
 }
