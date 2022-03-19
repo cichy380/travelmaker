@@ -3,11 +3,11 @@ import { Observable, tap } from 'rxjs';
 
 
 @Injectable()
-export class NotFoundInterceptor<T> implements NestInterceptor<T, T[]> {
-  intercept(context: ExecutionContext, next: CallHandler): Observable<T[]> {
+export class NotFoundInterceptor<T> implements NestInterceptor<T, T> {
+  intercept(context: ExecutionContext, next: CallHandler): Observable<T> {
     return next.handle()
-      .pipe(tap((data: T[]) => {
-        if (data.length === 0) throw new NotFoundException();
+      .pipe(tap(data => {
+        if (data === undefined) throw new NotFoundException();
       }));
   }
 }

@@ -17,7 +17,7 @@ export class DestinationController {
 
   @Get(':id')
   @UseInterceptors(NotFoundInterceptor)
-  findOne(@Param('id') id: string): Promise<Destination[]> {
+  findOne(@Param('id') id: string): Promise<Destination> {
     return this.destService.findOne(id);
   }
 }

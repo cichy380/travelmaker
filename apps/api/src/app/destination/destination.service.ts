@@ -12,7 +12,7 @@ export class DestinationService {
     return this.destRepository.find();
   }
 
-  async findOne(id: string): Promise<Destination[]> {
-    return this.destRepository.findByIds([ id ]);
+  async findOne(id: string): Promise<Destination> {
+    return this.destRepository.findOne(id);
   }
 }
