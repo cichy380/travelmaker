@@ -2,6 +2,8 @@ import { Controller, UseInterceptors, Post, Get, Body, Param } from '@nestjs/com
 import { TransformInterceptor } from '../core/interceptor/transform.interceptor';
 import { DestinationService } from './destination.service';
 import { Destination } from './destination.entity';
+import { NotFoundInterceptor } from '../core/interceptor/not-found.interceptor';
+
 
 @Controller('destinations')
 @UseInterceptors(TransformInterceptor)
@@ -14,6 +16,7 @@ export class DestinationController {
   }
 
   @Get(':id')
+  @UseInterceptors(NotFoundInterceptor)
   findOne(@Param('id') id: string): Promise<Destination[]> {
     return this.destService.findOne(id);
   }
