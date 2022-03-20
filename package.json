@@ -41,6 +41,8 @@
     "@ngrx/router-store": "~13.0.0",
     "@ngrx/store": "~13.0.0",
     "@nrwl/angular": "13.4.4",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
     "mongodb": "^4.4.1",
     "ngx-progressbar": "^7.0.0",
     "reflect-metadata": "^0.1.13",

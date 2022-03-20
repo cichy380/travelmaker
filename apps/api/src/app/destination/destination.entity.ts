@@ -1,8 +1,16 @@
 import { Column, Entity, ObjectID, ObjectIdColumn } from 'typeorm';
 
-export type Weekday = 'MONDAY' | 'TUESDAY' | 'WEDNESDAY' | 'THURSDAY' | 'FRIDAY' | 'SATURDAY' | 'SUNDAY';
+export enum Weekday {
+  MONDAY = 'MONDAY',
+  TUESDAY = 'TUESDAY',
+  WEDNESDAY = 'WEDNESDAY',
+  THURSDAY = 'THURSDAY',
+  FRIDAY = 'FRIDAY',
+  SATURDAY = 'SATURDAY',
+  SUNDAY = 'SUNDAY',
+}
 
-@Entity({ name: 'destinations'})
+@Entity({ name: 'destinations' })
 export class Destination {
   @ObjectIdColumn()
   id: ObjectID;

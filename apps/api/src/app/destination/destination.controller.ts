@@ -1,8 +1,9 @@
-import { Controller, UseInterceptors, Post, Get, Put, Body, Param } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Put, UseFilters, UseInterceptors } from '@nestjs/common';
+import { BadRequestExceptionFilter } from '../core/filter/bad-request-exception.filter';
 import { TransformInterceptor } from '../core/interceptor/transform.interceptor';
 import { NotFoundInterceptor } from '../core/interceptor/not-found.interceptor';
 import { Destination } from './destination.entity';
-import { DestinationId, CreateDestinationDto, UpdateDestinationDto } from './dto/destination.dto';
+import { CreateDestinationDto, DestinationId, UpdateDestinationDto } from './dto/destination.dto';
 import { DestinationService } from './destination.service';
 
 
@@ -28,6 +29,7 @@ export class DestinationController {
   }
 
   @Put(':id')
+  @UseFilters(BadRequestExceptionFilter)
   @UseInterceptors(NotFoundInterceptor)
   update(@Param('id') id: DestinationId, @Body() updateDestDto: UpdateDestinationDto): Promise<Destination> {
     return this.destService.update(id, updateDestDto);
