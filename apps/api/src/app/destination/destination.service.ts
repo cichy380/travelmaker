@@ -1,18 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { MongoRepository } from 'typeorm';
+import { UpdateResult } from 'typeorm/query-builder/result/UpdateResult';
 import { Destination } from './destination.entity';
-import { CreateDestinationDto } from './dto/create-destination.dto';
+import { DestinationId, CreateDestinationDto, UpdateDestinationDto } from './dto/destination.dto';
 
 
 @Injectable()
 export class DestinationService {
-  constructor(@InjectRepository(Destination) private readonly destRepository: Repository<Destination>) {
+  constructor(@InjectRepository(Destination) private readonly destRepository: MongoRepository<Destination>) {
   }
 
   async create(createDestination: Omit<CreateDestinationDto, 'order'>): Promise<Destination> {
     const allDestinationsCount = await this.destRepository.count();
-    const createDestinationDto: CreateDestinationDto = { ...createDestination, order: allDestinationsCount }
+    const createDestinationDto: CreateDestinationDto = { ...createDestination, order: allDestinationsCount };
     return this.destRepository.save(createDestinationDto);
   }
 
@@ -20,7 +21,12 @@ export class DestinationService {
     return this.destRepository.find();
   }
 
-  async findOne(id: string): Promise<Destination> {
+  async findOne(id: DestinationId): Promise<Destination> {
     return this.destRepository.findOne(id);
+  }
+
+  async update(id: DestinationId, updateDestinationDto: UpdateDestinationDto): Promise<Destination> | undefined {
+    const result: UpdateResult = await this.destRepository.update(id, updateDestinationDto);
+    return result.raw.matchedCount === 1 ? this.findOne(id) : undefined;
   }
 }
