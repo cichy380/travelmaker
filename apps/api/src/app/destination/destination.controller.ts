@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put, Patch, UseFilters, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Patch, Delete, UseFilters, UseInterceptors } from '@nestjs/common';
 import { BadRequestExceptionFilter } from '../core/filter/bad-request-exception.filter';
 import { TransformInterceptor } from '../core/interceptor/transform.interceptor';
 import { NotFoundInterceptor } from '../core/interceptor/not-found.interceptor';
@@ -39,5 +39,11 @@ export class DestinationController {
   @Patch()
   changeOrder(@Body('order') ids: DestinationId[]): Promise<Destination[]> {
     return this.destService.changeOrder(ids);
+  }
+
+  @Delete(':id')
+  @UseInterceptors(NotFoundInterceptor)
+  remove(@Param('id') id: DestinationId): Promise<Destination> {
+    return this.destService.remove(id);
   }
 }

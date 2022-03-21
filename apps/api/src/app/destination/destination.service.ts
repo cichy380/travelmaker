@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MongoRepository } from 'typeorm';
 import { UpdateResult } from 'typeorm/query-builder/result/UpdateResult';
+import { DeleteResult } from 'typeorm/query-builder/result/DeleteResult';
 import { Destination } from './destination.entity';
 import { DestinationId, CreateDestinationDto, UpdateDestinationDto } from './dto/destination.dto';
 
@@ -38,5 +39,12 @@ export class DestinationService {
       await this.destRepository.update(id, destination);
     }
     return destinations;
+  }
+
+  async remove(id: DestinationId): Promise<Destination> | null | undefined {
+    const destination: Destination = await this.findOne(id);
+    if (!destination) return undefined;
+    const result: DeleteResult = await this.destRepository.delete(id);
+    return result.affected === 1 ? destination : null;
   }
 }
