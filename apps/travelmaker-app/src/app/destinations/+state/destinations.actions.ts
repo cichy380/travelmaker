@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 import { DayOfTheWeek, DestinationId, DestinationsEntity } from './destinations.models';
@@ -16,7 +15,7 @@ export const loadDestinationsSuccess = createAction(
 
 export const loadDestinationsFailure = createAction(
   '[Destinations/API] Load Destinations Failure',
-  props<{ error: HttpErrorResponse | ApiErrorResponse }>(),
+  props<{ error: ApiErrorResponse }>(),
 );
 
 
@@ -48,7 +47,7 @@ export const editDestinationSuccess = createAction(
 
 export const editDestinationFailure = createAction(
   '[Destinations/API] Edit Destination Failure',
-  props<{ error: HttpErrorResponse | ApiErrorResponse }>(),
+  props<{ error: ApiErrorResponse }>(),
 );
 
 
@@ -64,7 +63,7 @@ export const deleteDestinationSuccess = createAction(
 
 export const deleteDestinationFailure = createAction(
   '[Destinations/API] Delete Destination Failure',
-  props<{ error: HttpErrorResponse | ApiErrorResponse }>(),
+  props<{ error: ApiErrorResponse }>(),
 );
 
 
@@ -80,7 +79,7 @@ export const changeOrderDestinationsSuccess = createAction(
 
 export const changeOrderDestinationsFailure = createAction(
   '[Destinations/API] Change Order of Destinations Failure',
-  props<{ error: HttpErrorResponse | ApiErrorResponse }>(),
+  props<{ error: ApiErrorResponse }>(),
 );
 
 

@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { DayOfTheWeek, DestinationsEntity } from '../../+state/destinations.models';
 import { DestinationsFacade } from '../../+state/destinations.facade';
 import { ApiErrorResponseDetails } from '../../../core/models/ApiResponse.model';
-import { Observable } from 'rxjs';
 
 
 export enum DestinationFormControlName {
@@ -63,8 +63,8 @@ export class DestinationFormComponent implements OnInit {
   }
 
   private setFormControlsErrors(formControlErrors: ApiErrorResponseDetails): void {
-    Object.entries(formControlErrors).forEach(([formControlName, formControlError]) =>
-      this.form.get(formControlName)?.setErrors({ msg: formControlError.message })
+    Object.entries(formControlErrors).forEach(([formControlName, formControlErrorMessage]) =>
+      this.form.get(formControlName)?.setErrors({ msg: formControlErrorMessage })
     );
   }
 }

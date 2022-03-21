@@ -1,3 +1,5 @@
+import { HttpStatusCode } from '@angular/common/http';
+
 export type ApiSuccessResponse<T> = {
   data: T;
   meta?: {
@@ -6,24 +8,12 @@ export type ApiSuccessResponse<T> = {
 }
 
 export type ApiErrorResponse = {
-  message?: string;
+  error: string;
+  message: string | null;
   details?: ApiErrorResponseDetails;
+  statusCode: HttpStatusCode;
 }
 
-export type ApiErrorResponseDetails = { [formFieldName in string]: ApiFieldError };
-
-type ApiFieldError = {
-  kind: string;
-  message: string;
-  name: 'ValidatorError';
-  path: string;
-  properties: {
-    message: string;
-    path: string;
-    type: string;
-    value: string;
-  }
-  value: string;
-}
+export type ApiErrorResponseDetails = { [formFieldName in string]: string };
 
 export type ApiResponse<T> = ApiSuccessResponse<T> & ApiErrorResponse
