@@ -13,8 +13,9 @@ export class DestinationController {
   constructor(private readonly destService: DestinationService) {}
 
   @Post()
-  create(@Body() createDest: Omit<CreateDestinationDto, 'order'>): Promise<Destination> {
-    return this.destService.create(createDest);
+  @UseFilters(BadRequestExceptionFilter)
+  create(@Body() createDestDto: CreateDestinationDto): Promise<Destination> {
+    return this.destService.create(createDestDto);
   }
 
   @Get()

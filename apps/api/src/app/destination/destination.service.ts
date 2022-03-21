@@ -11,9 +11,9 @@ export class DestinationService {
   constructor(@InjectRepository(Destination) private readonly destRepository: MongoRepository<Destination>) {
   }
 
-  async create(createDestination: Omit<CreateDestinationDto, 'order'>): Promise<Destination> {
+  async create(createDestDtoWithoutOrder: CreateDestinationDto): Promise<Destination> {
     const allDestinationsCount = await this.destRepository.count();
-    const createDestinationDto: CreateDestinationDto = { ...createDestination, order: allDestinationsCount };
+    const createDestinationDto: CreateDestinationDto = { ...createDestDtoWithoutOrder, order: allDestinationsCount };
     return this.destRepository.save(createDestinationDto);
   }
 
