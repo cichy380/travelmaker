@@ -29,4 +29,14 @@ export class DestinationService {
     const result: UpdateResult = await this.destRepository.update(id, updateDestinationDto);
     return result.raw.matchedCount === 1 ? this.findOne(id) : undefined;
   }
+
+  async changeOrder(ids: DestinationId[]): Promise<Destination[]> {
+    const destinations: Destination[] = await this.destRepository.findByIds(ids);
+    for (const destination of destinations) {
+      const id = destination.id.toString();
+      destination.order = ids.indexOf(id);
+      await this.destRepository.update(id, destination);
+    }
+    return destinations;
+  }
 }
