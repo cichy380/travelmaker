@@ -1,4 +1,4 @@
-import { IsEnum, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 import { Weekday } from '../destination.entity';
 
 export type DestinationId = string;
@@ -21,7 +21,6 @@ export class CreateDestinationDto {
   readonly day: Weekday;
 
   @IsNumber()
-  @IsPositive()
   @IsOptional()
   readonly order: number;
 }
