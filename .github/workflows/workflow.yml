@@ -27,8 +27,8 @@ jobs:
       - name: Test
         run: npm run test:ci
 
-      - name: Build
-        run: npm run build:prod
+      - name: Build Angular App
+        run: npm run build:app:prod
 
       - name: Archive build
         if: success()
@@ -58,3 +58,17 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: dist/apps/travelmaker-app
           enable_jekyll: true
+
+      - name: Publish API on Heroku
+        if: success()
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "travelmaker-nestjs-api"
+          heroku_email: "marcin.dobroszek@gmail.com"
+          branch: nestjs
+        env:
+          HD_PORT: 80
+          HD_TYPEORM_URL: ${{ secrets.TYPEORM_URL }}
+          HD_TYPEORM_PORT: ${{ secrets.TYPEORM_PORT }}
+          HD_TYPEORM_DATABASE: ${{ secrets.TYPEORM_DATABASE }}
